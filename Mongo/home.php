@@ -162,13 +162,13 @@ try {
 	$encontro_informacion_usuario = 0;
 	foreach ($result as $row) {
 		$encontro_informacion_usuario = 1;
-		$nombre=$row->nombre;
-		$categria_ppal = $row->catPrincipal;
-		$fecha_ultimo_ingreso = $row->ultIngreso;
+		$nombre=$row->usuarios_nombre;
+		$categria_ppal = $row->catprincipal;
+		$fecha_ultimo_ingreso = $row->ultingreso;
 		break;
 	}
 	//se acutaliza la fecha de ultimo ingreso
-	$bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultIngreso' => time()]], ['multi' => false, 'upsert' => false]);
+	$bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultingreso' => time()]], ['multi' => false, 'upsert' => false]);
 	$writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
 	$result = $manager->executeBulkWrite('RedSocial.Usuarios', $bulk, $writeConcern);
 	
