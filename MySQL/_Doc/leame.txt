@@ -1,0 +1,8 @@
+Para MySQL o MariaDB se debe entregar con los siguientes archivos y respetando los nombres:
+* Archivo 1Modelo.jpg con la Imagen del modelo Relacional (MySQLWorkBench)
+* Archivo 2ListaDeConsultas.txt con un ejemplo de los Selects usados para hacer las consultas (q1,q2,q3,q4,q5,q6)
+* Archivo 3modelo.wmb archivo exportado de MySQLWorkBench
+* Archivo 4Script.sql generado en el ultimo paso para crear la base de datos.
+* Archivo 5Script.sql Insertar los datos de las tablas maestras.
+* Archivo 6Notas.txt con información adicional que ustedes necesiten documentar, como por ejemplo la creación de indices, etc.
+* Archivo 7Fuentes.zip (Opcional) si uso otro lenguaje diferente a PHP.

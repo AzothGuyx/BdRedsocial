@@ -1,0 +1,758 @@
+<KDMPROJECT>
+  <ERMODEL>
+    <mxGraphModel grid="1" guides="1" tooltips="1" connect="1" fold="1" page="0" pageScale="1" pageWidth="826" pageHeight="1169">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="2" value="usuarios" style="whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="485" y="107" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="3" value="ultIngreso" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="405" y="40" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="4" value="" style="edgeStyle=none;exitX=0.5;exitY=1;entryX=0.25;entryY=0" edge="1" source="3" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="115" y="77" as="sourcePoint"/>
+            <mxPoint x="215" y="-23" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="5" value="nickname" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="495" y="40" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="6" value="" style="edgeStyle=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0" edge="1" source="5" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="115" y="77" as="sourcePoint"/>
+            <mxPoint x="215" y="-23" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7" value="nombre" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="585" y="41" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="8" value="" style="edgeStyle=none;exitX=0.5;exitY=1;entryX=0.75;entryY=0" edge="1" source="7" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="115" y="77" as="sourcePoint"/>
+            <mxPoint x="215" y="-23" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="9" value="categorias" style="whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="485" y="330" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="10" value="eventos" style="whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="140" y="330" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="11" value="id" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="10" y="425.5" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="12" value="dsEvento" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="100" y="426" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="13" value="nAsistentes" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="190" y="426" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="14" value="feevento" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="280" y="425.5" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="15" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0;entryY=0.75" edge="1" source="11" target="10" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-60" y="227" as="sourcePoint"/>
+            <mxPoint x="40" y="127" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="16" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0.25;entryY=1" edge="1" source="12" target="10" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-60" y="227" as="sourcePoint"/>
+            <mxPoint x="40" y="127" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="17" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0.75;entryY=1" edge="1" source="13" target="10" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-60" y="227" as="sourcePoint"/>
+            <mxPoint x="40" y="127" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="18" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=1;entryY=0.75" edge="1" source="14" target="10" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint x="-60" y="227" as="sourcePoint"/>
+            <mxPoint x="40" y="127" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="19" value="agendas" style="shape=card;whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="125" y="99" width="130" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="20" value="m" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0.5;entryY=1;entryPerimeter=0" edge="1" source="10" target="19" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="21" value="n" style="edgeStyle=none;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5" edge="1" source="19" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="22" value="publicaciones" style="whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="950" y="330" width="100" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="23" value="id" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="830" y="426" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="24" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0;entryY=0.75" edge="1" source="23" target="22" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="214" as="sourcePoint"/>
+            <mxPoint x="100" y="114" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="25" value="dsPubli" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="920" y="426" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="26" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0.25;entryY=1" edge="1" source="25" target="22" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="214" as="sourcePoint"/>
+            <mxPoint x="100" y="114" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="27" value="likes" style="ellipse" vertex="1" parent="1">
+          <mxGeometry x="1100" y="426" width="100" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="28" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=1;entryY=0.75" edge="1" source="27" target="22" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="214" as="sourcePoint"/>
+            <mxPoint x="100" y="114" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="29" value="hace" style="shape=card;whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="935" y="99" width="130" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="30" value="1" style="edgeStyle=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryPerimeter=0" edge="1" source="2" target="29" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31" value="n" style="edgeStyle=none;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0" edge="1" source="29" target="22" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="32" value="pertenece" style="shape=card;whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="690" y="323" width="130" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="33" value="1" style="edgeStyle=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;entryPerimeter=0" edge="1" source="9" target="32" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="34" value="n" style="edgeStyle=none;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5" edge="1" source="32" target="22" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="35" value="nombre" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="495" y="420.5" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="36" value="" style="edgeStyle=none;exitX=0.5;exitY=0;entryX=0.5;entryY=1" edge="1" source="35" target="9" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="37" value="tiene" style="shape=card;whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="405" y="210" width="130" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="38" value="n" style="edgeStyle=none;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.25;entryY=1" edge="1" source="37" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="39" value="1" style="edgeStyle=none;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.25;entryY=0" edge="1" source="37" target="9" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="40" value="id" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="60" y="45" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="41" value="" style="edgeStyle=none;exitX=1;exitY=1;entryX=0.333;entryY=0.167;entryPerimeter=0" edge="1" source="40" target="19" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="42" value="catSecun" style="shape=card;whiteSpace=wrap" vertex="1" parent="1">
+          <mxGeometry x="550" y="210" width="130" height="65" as="geometry"/>
+        </mxCell>
+        <mxCell id="43" value="m" style="edgeStyle=none;exitX=0.75;exitY=0;entryX=0.5;entryY=1;entryPerimeter=0" edge="1" source="9" target="42" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="44" value="n" style="edgeStyle=none;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.75;entryY=1" edge="1" source="42" target="2" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="45" value="id" style="ellipse;fontStyle=4" vertex="1" parent="1">
+          <mxGeometry x="715" y="225" width="80" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="46" value="" style="edgeStyle=none;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5" edge="1" source="42" target="45" parent="1">
+          <mxGeometry width="100" height="100" relative="1" as="geometry">
+            <mxPoint y="100" as="sourcePoint"/>
+            <mxPoint x="100" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+    <KEYS_JSON>
+{}    </KEYS_JSON>
+  </ERMODEL>
+  <ACCESS_PATTERNS width="1150px" height="" left="204.484px" top="77.5156px">
+    <Q1>
+      <APTYPE>
+simple      </APTYPE>
+      <GR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+                                                            <DIV>
+                                                                                <DIV>
+                                                                                                      <DIV>
+usuarios.nickname                                                                                                                </DIV>
+                                                                                          </DIV>
+                                                                      </DIV>
+                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <VRS>
+value        </VRS>
+      </GR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+                                                            <DIV>
+                                                                                <DIV>
+                                                                                                      <DIV>
+usuarios.nombre                                                                                                                </DIV>
+                                                                                          </DIV>
+                                                                      </DIV>
+                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+                                                            <DIV>
+                                                                                <DIV>
+                                                                                                      <DIV>
+usuarios.ultIngreso                                                                                                                </DIV>
+                                                                                          </DIV>
+                                                                      </DIV>
+                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+                                                            <DIV>
+                                                                                <DIV>
+                                                                                                      <DIV>
+categorias.nombre                                                                                                                </DIV>
+                                                                                          </DIV>
+                                                                      </DIV>
+                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Dado un nickname, trae la información de usuario mas su categoría principal      </DESCR>
+    </Q1>
+    <Q2>
+      <APTYPE>
+simple      </APTYPE>
+      <GR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+eventos.feevento                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <VRS>
+range        </VRS>
+      </GR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+eventos.nAsistentes                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <CNT/>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+eventos.feevento                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <ORDERBY>
+ASC        </ORDERBY>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+eventos.dsEvento                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+eventos.id                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Todos eventos      </DESCR>
+    </Q2>
+    <Q3>
+      <APTYPE>
+simple      </APTYPE>
+      <GR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+categorias.nombre                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <VRS>
+value        </VRS>
+      </GR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+publicaciones.likes                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <CNT/>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+publicaciones.dsPubli                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+publicaciones.id                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Todas las publicaciones.      </DESCR>
+    </Q3>
+    <Q4>
+      <APTYPE>
+simple      </APTYPE>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+categorias.nombre                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Todas las categorías      </DESCR>
+    </Q4>
+    <Q5>
+      <APTYPE>
+simple      </APTYPE>
+      <GR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+usuarios.nickname                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <VRS>
+value        </VRS>
+      </GR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+categorias.nombre                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+catSecun.id                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Categorías secundarias de un usuario      </DESCR>
+    </Q5>
+    <Q6>
+      <APTYPE>
+simple      </APTYPE>
+      <GR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+                          <DIV>
+                                          <DIV>
+usuarios.nickname                                                    </DIV>
+                                    </DIV>
+                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+        <VRS>
+value        </VRS>
+      </GR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+eventos.dsEvento                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+eventos.id                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <FR>
+        <ATTRIBUTE>
+          <DIV>
+            <DIV>
+agendas.id                      </DIV>
+          </DIV>
+        </ATTRIBUTE>
+      </FR>
+      <DESCR>
+Dado un nickname, muestra los eventos a los que asistirá el usuario.      </DESCR>
+    </Q6>
+  </ACCESS_PATTERNS>
+  <LOGICAL_MODEL>
+        <Q1 qTemplate="SELECT |s|usuarios__nombre|e|, |s|usuarios__ultIngreso|e|, |s|categorias__nombre|e| FROM |s|tableName|e| WHERE |s|usuarios__nickname|e|=?;">
+            <tbl>
+                <table0/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <publicaciones_id origName="publicaciones__id">
+                        <C>
+ASC                        </C>
+                    </publicaciones_id>
+                    <usuarios_nombre origName="usuarios__nombre">
+                        <S/>
+                        <NOCLUST/>
+                    </usuarios_nombre>
+                    <ultingreso origName="usuarios__ultIngreso">
+                        <S/>
+                        <NOCLUST/>
+                    </ultingreso>
+                    <categorias_nombre origName="categorias__nombre">
+                        <S/>
+                        <NOCLUST/>
+                    </categorias_nombre>
+                </columns>
+            </tbl>
+        </Q1>
+        <Q2 qTemplate="SELECT |s|eventos__feevento|e|, |s|eventos__id|e|, |s|eventos__dsEvento|e|, |s|eventos__nAsistentes|e| FROM |s|tableName|e| WHERE |s|dummy|e|=? and |s|eventos__feevento|e|&gt;? ORDER BY |s|eventos__feevento|e| ASC;">
+            <tbl>
+                <table1/>
+                <columns>
+                    <dummy origName="dummy">
+                        <K/>
+                    </dummy>
+                    <feevento origName="eventos__feevento">
+                        <C>
+ASC                            <expl/>
+                        </C>
+                    </feevento>
+                    <eventos_id origName="eventos__id">
+                        <C>
+ASC                        </C>
+                    </eventos_id>
+                    <dsevento origName="eventos__dsEvento">
+                        <C>
+ASC                        </C>
+                    </dsevento>
+                    <nasistentes origName="eventos__nAsistentes">
+                        <CNT/>
+                        <NOCLUST/>
+                    </nasistentes>
+                </columns>
+            </tbl>
+            <tbl>
+                <table2/>
+                <columns>
+                    <dummy origName="dummy">
+                        <K/>
+                    </dummy>
+                    <feevento origName="eventos__feevento">
+                        <C>
+ASC                            <expl/>
+                        </C>
+                    </feevento>
+                    <dsevento origName="eventos__dsEvento">
+                        <C>
+ASC                        </C>
+                    </dsevento>
+                    <eventos_id origName="eventos__id">
+                        <C>
+ASC                        </C>
+                    </eventos_id>
+                    <nasistentes origName="eventos__nAsistentes">
+                        <CNT/>
+                        <NOCLUST/>
+                    </nasistentes>
+                </columns>
+            </tbl>
+        </Q2>
+        <Q3 qTemplate="SELECT |s|publicaciones__id|e|, |s|publicaciones__dsPubli|e|, |s|publicaciones__likes|e| FROM |s|tableName|e| WHERE |s|categorias__nombre|e|=?;">
+            <tbl>
+                <publicacioness_by_categorias/>
+                <columns>
+                    <categorias_nombre origName="categorias__nombre">
+                        <K/>
+                        <NOCLUST/>
+                    </categorias_nombre>
+                    <publicaciones_id origName="publicaciones__id">
+                        <C>
+ASC                        </C>
+                    </publicaciones_id>
+                    <dspubli origName="publicaciones__dsPubli">
+                        <C>
+ASC                        </C>
+                    </dspubli>
+                    <likes origName="publicaciones__likes">
+                        <CNT/>
+                        <NOCLUST/>
+                    </likes>
+                </columns>
+            </tbl>
+            <tbl>
+                <publicacioness_by_categorias1/>
+                <columns>
+                    <categorias_nombre origName="categorias__nombre">
+                        <K/>
+                        <NOCLUST/>
+                    </categorias_nombre>
+                    <dspubli origName="publicaciones__dsPubli">
+                        <C>
+ASC                        </C>
+                    </dspubli>
+                    <publicaciones_id origName="publicaciones__id">
+                        <C>
+ASC                        </C>
+                    </publicaciones_id>
+                    <likes origName="publicaciones__likes">
+                        <CNT/>
+                        <NOCLUST/>
+                    </likes>
+                </columns>
+            </tbl>
+        </Q3>
+        <Q4 qTemplate="SELECT |s|categorias__nombre|e| FROM |s|tableName|e| WHERE |s|dummy|e|=?;">
+            <tbl>
+                <table3/>
+                <columns>
+                    <dummy origName="dummy">
+                        <K/>
+                    </dummy>
+                    <categorias_nombre origName="categorias__nombre">
+                        <C>
+ASC                        </C>
+                    </categorias_nombre>
+                </columns>
+            </tbl>
+        </Q4>
+        <Q5 qTemplate="SELECT |s|categorias__nombre|e|, |s|catSecun__id|e| FROM |s|tableName|e| WHERE |s|usuarios__nickname|e|=?;">
+            <tbl>
+                <table4/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <publicaciones_id origName="publicaciones__id">
+                        <C>
+ASC                        </C>
+                    </publicaciones_id>
+                    <categorias_nombre origName="categorias__nombre">
+                        <S/>
+                        <NOCLUST/>
+                    </categorias_nombre>
+                    <catsecun_id origName="catSecun__id">
+                        <S/>
+                        <NOCLUST/>
+                    </catsecun_id>
+                </columns>
+            </tbl>
+        </Q5>
+        <Q6 qTemplate="SELECT |s|eventos__id|e|, |s|eventos__dsEvento|e|, |s|agendas__id|e| FROM |s|tableName|e| WHERE |s|usuarios__nickname|e|=?;">
+            <tbl>
+                <table5/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <eventos_id origName="eventos__id">
+                        <C>
+ASC                        </C>
+                    </eventos_id>
+                    <dsevento origName="eventos__dsEvento"/>
+                    <agendas_id origName="agendas__id"/>
+                </columns>
+            </tbl>
+            <tbl>
+                <table6/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <agendas_id origName="agendas__id">
+                        <C>
+ASC                        </C>
+                    </agendas_id>
+                    <dsevento origName="eventos__dsEvento"/>
+                    <eventos_id origName="eventos__id"/>
+                </columns>
+            </tbl>
+            <tbl>
+                <table7/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <eventos_id origName="eventos__id">
+                        <C>
+ASC                        </C>
+                    </eventos_id>
+                    <catsecun_id origName="catSecun__id">
+                        <C>
+ASC                        </C>
+                    </catsecun_id>
+                    <dsevento origName="eventos__dsEvento"/>
+                    <agendas_id origName="agendas__id"/>
+                </columns>
+            </tbl>
+            <tbl>
+                <table8/>
+                <columns>
+                    <nickname origName="usuarios__nickname">
+                        <K/>
+                        <NOCLUST/>
+                    </nickname>
+                    <catsecun_id origName="catSecun__id">
+                        <C>
+ASC                        </C>
+                    </catsecun_id>
+                    <eventos_id origName="eventos__id">
+                        <C>
+ASC                        </C>
+                    </eventos_id>
+                    <dsevento origName="eventos__dsEvento"/>
+                    <agendas_id origName="agendas__id"/>
+                </columns>
+            </tbl>
+        </Q6>
+      <LOGICAL_CONFIGEL>
+{"table0":"","table1":"","publicacioness_by_categorias":"","table3":"","table4":"","table5":""}    </LOGICAL_CONFIGEL>
+  </LOGICAL_MODEL>
+  <PHYSICAL_MODEL>
+{"0":{"listOfInputs":"usuarios,nickname,usuarios_nombre,ultingreso,categorias_nombre","listOfSelectValues":"TEXT,K,TEXT,,TIMESTAMP,,TEXT,"},"1":{"listOfInputs":"eventos,dummy,feevento,eventos_id,dsevento,nasistentes","listOfSelectValues":"INT,K,TIMESTAMP,cup,INT,cup,TEXT,cup,COUNTER,"},"2":{"listOfInputs":"publicaciones,categorias_nombre,publicaciones_id,dspubli,likes","listOfSelectValues":"TEXT,K,INT,cup,TEXT,cup,COUNTER,"},"3":{"listOfInputs":"categorias,dummy,categorias_nombre","listOfSelectValues":"INT,K,TEXT,cup"},"4":{"listOfInputs":"catSecun,nickname,catsecun_id,categorias_nombre","listOfSelectValues":"TEXT,K,INT,cup,TEXT,"},"5":{"listOfInputs":"agendas,agendas_id,nickname,eventos_id,dsevento","listOfSelectValues":"INT,cup,TEXT,K,INT,,TEXT,"},"highlightedTables":["table0","table1","publicacioness_by_categorias","table3","table4","table5"]}  </PHYSICAL_MODEL>
+</KDMPROJECT>

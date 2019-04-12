@@ -1,0 +1,6 @@
+Para Mongo se debe entregar con los siguientes archivos y respetando los nombres:
+* Archivo 1ModeloXX.jpg con la Imagen de cada colección vista en mongodb compass community
+* Archivo 2ListaDeConsultas.txt con un ejemplo de los JSOn usados para hacer las consultas (q1,q2,q3,q4,q5,q6)
+* Archivo 3JSonMaestros.txt (Opcional) con los JSon a insertar en las colecciones maestros (SI las USO). 
+* Archivo 4Notas.txt con información adicional que ustedes necesiten documentar, como por ejemplo la creación de indices, etc.
+* Archivo 5Fuentes.zip (Opcional) si uso otro lenguaje diferente a PHP.

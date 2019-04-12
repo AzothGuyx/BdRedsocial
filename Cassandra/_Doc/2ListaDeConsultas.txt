@@ -1,0 +1,17 @@
+// Q1:
+/* SELECT usuarios_nombre, ultingreso, categorias_nombre FROM usuarios WHERE nickname='stephanie'; */
+
+// Q2:
+/* SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2 and feevento>'2019-03-20T15:00:59.001+0000' ORDER BY feevento ASC; */
+
+// Q3:
+/* SELECT publicaciones_id, dspubli, likes FROM publicaciones WHERE categorias_nombre='udem' */
+
+// Q4:
+/* SELECT categorias_nombre FROM categorias WHERE dummy=1; */
+
+// Q5:
+/* SELECT categorias_nombre, catsecun_id FROM catSecun WHERE nickname='juand'; */
+
+// Q6:
+/* SELECT eventos_id, dsevento, agendas_id FROM agendas WHERE nickname='piedad'; */

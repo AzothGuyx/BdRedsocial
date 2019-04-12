@@ -1,0 +1,7 @@
+Para Cassandra se debe entregar con los siguientes archivos y respetando los nombres:
+* Archivo 1Modelo.jpg con la Imagen del modelo Entidad Relación (KDM)
+* Archivo 2ListaDeConsultas.txt con un ejemplo de los Selects usados para hacer las consultas (q1,q2,q3,q4,q5,q6). Debe entregar los reales. NO los generados desde el KDM
+* Archivo 3modelo.xml archivo exportado de KDM
+* Archivo 4Script.cql generado en el ultimo paso para crear la base de datos (KDM)
+* Archivo 5Notas.txt con información adicional que ustedes necesiten documentar, como por ejemplo la creación de indices, etc.
+* Archivo 6Fuentes.zip (Opcional) si uso otro lenguaje diferente a PHP

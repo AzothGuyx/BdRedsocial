@@ -1,0 +1,5 @@
+Se debe entregar con los siguientes archivos y respetando los nombres:
+* Archivo 1Integrantes.txt con los nombres COMPLETOS y documento.
+* Archivo 2Tabla_Resumen_Tiempos.pdf Con la tabla donde se realizan las medidas de tiempos y algunas imagenes donde se muestran algunos de las pruebas.
+* Archivo 3Conclusiones.pdf Donde ustedes deben sacar las conclusiones personales del trabajo y cuales son las lecciones aprendidas.
+* Archivo 4NotasAdcionales.pdf o .zip (Opcional) Si ustedes quieren describir algo adicional o herramienta o notas, etc. que se salga de los documentos pedidos.
