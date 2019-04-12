@@ -145,30 +145,26 @@ if( isset( $_GET["filtro_fecha"] ) ){
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
 // Documentacion https://www.php.net/manual/es/book.mysqli.php
 // Create connection (Puerto, Usuario, Clave y base datos)
-$mysqli  = new mysqli('localhost:3307', 'root', '','CAMBIAR_ESTE_NOMBRE');
+$mysqli  = new mysqli('localhost', 'root', '','redes_sociales');
 if ($mysqli->connect_errno) {
-    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+	echo "Fallï¿½ la conexiï¿½n a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+	
 	exit(0);
 }
 
 
-$query = 'SELECT cateroria_ppal,fecha_ultimo_ingreso ... FROM ... WHERE ... usuario='.$login;
-//echo $query;
-$result = $mysqli->query($query);
-// Se recupera el primer registro
-$encontro_informacion_usuario = 0;
-while ($row = $result->fetch_assoc()) {
-	$encontro_informacion_usuario = 1;
-    $categria_ppal = $row['cateroria_ppal'];
-	$fecha_ultimo_ingreso = $row['fecha_ultimo_ingreso'];
-	break;
-}
-if( $encontro_informacion_usuario == 1) {
-	echo "<H3>Usuario No encontrado</H3>";
-	exit(0);
-}
 ?>
-
+<?php
+	echo "<b>Lista de eventos</b>";
+	$query = 'SELECT * FROM evento';
+	//echo $query;
+	$result = $mysqli->query($query);
+	echo '<table cellspacing="3">';
+	foreach ($result as $row) {
+		printf("<tr><td>\"%s\"</td><td>\"%s\"</td><td>\"%s\"</td></tr>\n", $row['id'], $row['dsevento'], $row['feevento']);
+	
+	}
+	?>
 <H3>Home</H3>
 	<!-- Sin Filtro por fecha -->
 	<form name="q1" action="home.php" method="get">

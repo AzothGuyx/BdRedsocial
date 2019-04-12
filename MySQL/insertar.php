@@ -32,7 +32,7 @@ echo 'dspublicacion='. 	$dspublicacion.'</br>';
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
 // Documentacion https://www.php.net/manual/es/book.mysqli.php
 // Create connection (Puerto, Usuario, Clave y base datos)
-$mysqli  = new mysqli('localhost:3307', 'root', '','CAMBIAR_ESTE_NOMBRE');
+$mysqli  = new mysqli('localhost:3307', 'root', '','red_social');
 if ($mysqli->connect_errno) {
     echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	exit(0);
