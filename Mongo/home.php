@@ -143,7 +143,7 @@ if( isset( $_GET["filtro_fecha"] ) ){
 // Documentaci�n https://www.php.net/manual/es/class.mongodb-driver-manager.php
 try {
 	$manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-
+	$bulk = new MongoDB\Driver\BulkWrite;
 	/* ==--> Aqui ustede debe validar el usuario*/
 	// Documentaci�n en https://www.php.net/manual/es/mongodb-driver-manager.executequery.php
 
@@ -167,6 +167,11 @@ try {
 		$fecha_ultimo_ingreso = $row->ultIngreso;
 		break;
 	}
+	//se acutaliza la fecha de ultimo ingreso
+	$bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultIngreso' => time()]], ['multi' => false, 'upsert' => false]);
+	$writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+	$result = $manager->executeBulkWrite('RedSocial.Usuarios', $bulk, $writeConcern);
+	
 	if( $encontro_informacion_usuario == 0) {
 		echo "<H3>Usuario No encontrado</H3>";
 		exit(0);
@@ -180,9 +185,21 @@ try {
     echo "On line:", $e->getLine(), "\n";     
 	exit(0);	
 }
-?>
-<!--esta parte es para hacer la actualizacion de la fecha de ultimo ingreso-->
 
+//En esta parte se actualiza la fecha de ultimo ingreso al sistema
+
+
+
+
+	
+//echo time();
+
+?>
+
+
+<?php
+	
+?>
 <H3>Home</H3>
 	<!-- Sin Filtro por fecha -->
 	<form name="q1" action="home.php" method="get">
