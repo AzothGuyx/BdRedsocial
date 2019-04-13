@@ -65,19 +65,32 @@ $query = 'SELECT usuarios_nombre, ultingreso, categorias_nombre FROM usuarios WH
 //echo $query;
 $result = $session->execute($query);
 // Se recupera el primer registro
-$encontro_informacion_usuario = 0;
+$encontro_informacion_usuario = 1;
 
 foreach ($result as $row) {
-	$encontro_informacion_usuario = 1;
+	$encontro_informacion_usuario = 0;
 		$nombre = $row['usuarios_nombre'];
     $categria_ppal = $row['categorias_nombre'];
 		$fecha_ultimo_ingreso = $row['ultingreso'];
 	break;
 }
-if( $encontro_informacion_usuario == 0) {
+if( $encontro_informacion_usuario == 1) {
 	echo "<H3>Usuario No encontrado</H3>";
 	exit(0);
 }
+
+//Optener las categorias secundarias
+$query = 'SELECT categorias_nombre from catsecun where nickname='.'\''.$login.'\'';
+$result = $session->execute($query);
+
+$cont = 0;
+$tiene_catsecun = 1;
+foreach($result as $row){
+	$tiene_catsecun = 0;
+	$catsecun[$cont] = $row['categorias_nombre'];
+	$cont = $cont + 1;
+}
+
 ?>
 
 <H3>Home</H3>
@@ -122,14 +135,12 @@ if( $encontro_informacion_usuario == 0) {
 
 	// Lista de Publicaciones
 	echo "<b>Lista de publicaciones</b>";
-	$query = 'SELECT publicaciones_id, dspubli, likes, categorias_nombre FROM publicaciones';
+	$query = 'SELECT publicaciones_id, dspubli, likes, categorias_nombre FROM publicaciones WHERE categorias_nombre='.'\''.$categria_ppal.'\'';
 	//echo $query;
 	$result = $session->execute($query);
 	echo '<table cellspacing="5">';
 
 	foreach ($result as $row) {
-		//echo "<!-- Boton de asistire -->"
-		//printf("<tr><td>\"%s\"</td><td>\"%s\"</td><td>\"%s\"</td></tr>\n", 'Nro asistentes '.$row['nasistentes'], $row['dsevento'], date('m/d/Y H:i:s' ,$row['feevento']->time()));
 		echo	'<tr>
 						<td>Nro likes ( '.$row['likes'].' )</td>
 						<td>'.$row['dspubli'].'</td>
@@ -143,24 +154,37 @@ if( $encontro_informacion_usuario == 0) {
 						</td>
 				</tr>';
 	}
+	
+	if ($tiene_catsecun == 0){
+		for ($i = 0; $i < count($catsecun); $i++){
+			$query = 'SELECT publicaciones_id, dspubli, likes, categorias_nombre FROM publicaciones WHERE categorias_nombre='.'\''.$catsecun[$i].'\'';
+			
+			$result = $session->execute($query);
+
+			foreach ($result as $row) {
+				echo	'<tr>
+								<td>Nro likes ( '.$row['likes'].' )</td>
+								<td>'.$row['dspubli'].'</td>
+								<td>
+									<form method="get" action="like.php">
+										<input type="hidden" name="publicaciones_id" value="'.$row['publicaciones_id'].'">
+										<input type="hidden" name="categorias_nombre" value="'.$row['categorias_nombre'].'">
+										<input type="hidden" name="dspubli" value="'.$row['dspubli'].'">
+										<input class="button mi_color" type="submit" value="Like">
+									</form>
+								</td>
+						</tr>';
+			}
+		}
+	}
 	echo "</table>";
 
-	// <button class="button mi_color" onclick="updateAsist('.$row['publicaciones_id'].', '.$row['categorias_nombre'].', '.$row['dspubli'].');">Like2</button>
-
-	function updateAsist($publicaciones_id, $categorias_nombre, $dspubli){
-
-		$query = 'UPDATE publicaciones set likes = likes + 1 where publicaciones_id = '.$publicaciones_id.' and categorias_nombre = '.'\''.$categorias_nombre.'\' and dspubli = '.'\''.$dspubli.'\'';
-		$result = $session->execute($query);
-
-	}
+	echo '<a href="publicar.php?categoria_ppal='.$categria_ppal.'"><button class="button mi_color">Publicar</button></a>';
 
 	echo "<hr>";
 	echo $nombre. " - ";
 	echo date('m/d/Y H:i:s' , $fecha_ultimo_ingreso->time());
 	echo " - ".$categria_ppal;
 	?>
-
-
-	
 </body>
 </html>
