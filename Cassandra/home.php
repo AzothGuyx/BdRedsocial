@@ -95,18 +95,36 @@ foreach($result as $row){
 
 <H3>Home</H3>
 	<!-- Sin Filtro por fecha -->
-	<form name="q1" action="home.php" method="get">
-		<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
-		<input type="hidden" name="filtro_fecha" value="0" >
-		<input type="hidden" name="login" value="<?php echo $login;?>" >
-		<button class="button mi_color">Sin Filtro</button>
-	</form>
+	<table>
+		<tr>
+			<td>
+				<form name="q1" action="home.php" method="get">
+					<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
+					<input type="hidden" name="filtro_fecha" value="0" >
+					<input type="hidden" name="login" value="<?php echo $login;?>" >
+					<button class="button mi_color">Sin Filtro</button>
+				</form>
+			</td>
+			<td>
+				<form name="q0" action="home.php" method="get">
+					<!-- filtro_fecha con valor -1 indica que debe buscar solo sobre la fecha de ultimo ingreso -->
+					<input type="hidden" name="filtro_fecha" value="-1" >
+					<input type="hidden" name="login" value="<?php echo $login;?>" >
+					<button class="button mi_color">Con Filtro</button>
+				</form>
+			</td>
+		</tr>
+	</table>
 
 	<hr>
 	<!-- Lista de Eventos -->	
 	<?php
 	echo "<b>Lista de eventos</b>";
-	$query = 'SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2 and feevento>'.'\''.$fecha_ultimo_ingreso.'\' ORDER BY feevento ASC';
+	if ($filtro_fecha == 0){
+		$query = 'SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2';
+	}else{
+		$query = 'SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2 and feevento>'.'\''.$fecha_ultimo_ingreso.'\' ORDER BY feevento ASC';	
+	}
 	//echo $query;
 	$result = $session->execute($query);
 	echo '<table cellspacing="5">';
@@ -185,6 +203,10 @@ foreach($result as $row){
 	echo $nombre. " - ";
 	echo date('m/d/Y H:i:s' , $fecha_ultimo_ingreso->time());
 	echo " - ".$categria_ppal;
+
+	$ban = 0;
+	$query = 'UPDATE usuarios set ultingreso = dateof(now()) where nickname ='.'\''.$login.'\'';
+	$session->execute($query);
 	?>
 </body>
 </html>
