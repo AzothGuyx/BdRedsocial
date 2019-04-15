@@ -147,9 +147,7 @@ try {
 	/* ==--> Aqui ustede debe validar el usuario*/
 	// Documentaci�n en https://www.php.net/manual/es/mongodb-driver-manager.executequery.php
 
-	//{"nickname":{$eq:"daniel"}}
-	//{"nombre":1,"ultiIngreso":1,"categorias":1,"catPrincipal":1}
-	//
+	
 	$filter = ["nickname" => ['$eq' =>$login]];
 	$options = [
 		'maxTimeMS' => 1000
@@ -217,15 +215,18 @@ try {
 	<?php
 	echo "<b>Lista de eventos</b>";
 	if ($filtro_fecha == 0){
-		$query = 'SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2';
+		$filter = [];
+		$options = [];
+		$query = new MongoDB\Driver\Query($filter, $options);
+		
 	}else{
-		$query = 'SELECT feevento, eventos_id, dsevento, nasistentes FROM eventos WHERE dummy=2 and feevento>'.'\''.$fecha_ultimo_ingreso.'\' ORDER BY feevento ASC';	
+		$filter = ['feevento' => ['$gte'=>time()]];
+		$options = [];
+		$query = new MongoDB\Driver\Query($filter, $options);
 	}
 	
 	// Where 
-	$filter = ['feevento' => ['$gte'=>time()]];
-	$options = [];
-	$query = new MongoDB\Driver\Query($filter, $options);
+
 	//echo $query;
 	$result = $manager->executeQuery('RedSocial.Eventos', $query);
 	echo "<table>";
@@ -234,12 +235,13 @@ try {
 		//printf("<tr><td>\"%s\"</td><td>\"%s\"</td></tr>\n", $row->feevento, $row->dsevento);
 		echo	'<tr>
 					<td>'.'Nro asistentes ( '.$row->nasistentes.' ) </td><td>'.$row->dsevento.'</td>
-					<td>'.date('m/d/Y H:i:s' ,$row->feevento->time()).'</td>
+					<td>'.date('m/d/Y H:i:s' ,$row->feevento).'</td>
 					<td>
 						<form methon="get" action="agenda.php">
 							<input type="hidden" name="eventos_id" value="'.$row->eventos_id.'">
 							<input type="hidden" name="feevento" value="'.$row->feevento.'">
 							<input type="hidden" name="dsevento" value="'.$row->dsevento.'">
+							<input type="hidden" name="nasistentes" value="'.$row->nasistentes.'">
 							<input type="hidden" name="nickname" value="'.$login.'">
 							<input class="button mi_color" type="submit" value="Asistir">
 						</form>
@@ -276,6 +278,14 @@ try {
 									</td>
 							</tr>';
 			}
+
+
+			echo '<a href="publicar.php?categoria_ppal='.$categria_ppal.'"><button class="button mi_color">Publicar</button></a>';
+
+			echo "<hr>";
+			echo $nombre. " - ";
+			echo date('m/d/Y H:i:s' , $fecha_ultimo_ingreso);
+			echo " - ".$categria_ppal;
 
 			
 	?>
