@@ -34,7 +34,8 @@
         echo "<br>";
 
         echo    '<form method="get" action="insertPubli.php">
-                    <input type="text" value="Descripcion" size="100" maxlength="100" name="dspubli">
+                    <textarea name="dspubli" placeholder="Descripción"></textarea>
+                    <br>
                     <input type="hidden" value="'.$categoria_ppal.'" name="categoria_ppal">
                     <input type="hidden" value="'.$cont.'" name="publicaciones_id">
                     <input type="submit" value="Publicar" name="publicar" class="button mi_color">
