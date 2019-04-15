@@ -24,6 +24,7 @@ try {
    // se obtienen los datos de la url // Se optienen los argumentos
 
     $nickname = htmlspecialchars($_GET['nickname']);
+    $asistentes= htmlspecialchars($_GET['nasistentes']);
 
     if( isset( $_GET["eventos_id"] )  ){
         $eventos_id = htmlspecialchars($_GET["eventos_id"]);
@@ -34,21 +35,20 @@ try {
             if(isset($_GET["dsevento"])){
                 $dsevento = htmlspecialchars($_GET['dsevento']);
                 
+                $evento=intval($eventos_id);
+                
+                $asistentes=$asistentes+1;
+
                 //en esta parte actualizaremos los nasistentes en eventos 
-                $bulk->update(['eventos_id' =>['$eq' => $eventos_id]], ['$set' => ['nasistentes' => 'nasistentes'+1]], ['multi' => false, 'upsert' => false]);
+                $bulk->update(['eventos_id' =>['$eq' => $evento]], ['$set' => ['nasistentes' => $asistentes]], ['multi' => false, 'upsert' => false]);
                 $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
-                $result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk, $writeConcern);
+                $result = $manager->executeBulkWrite('RedSocial.Eventos', $bulk, $writeConcern);
 
-
-                // en esta parte se creara un registro en asistencias
-                
-
-                
-                
-    
                 //Se inserta una nueva agenda
-                $query = 'INSERT into agendas (agendas_id, nickname, eventos_id, dsevento) values ('.$cont.', '.'\''.$nickname.'\', '.$eventos_id.', '.'\''.$dsevento.'\')';
-                $result = $sesion->execute($query);
+                $bulk->insert(['nickname' => $nickname, 'eventos_id' => $eventos_id]);
+                 $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
+
+                
             }
         }
     }
