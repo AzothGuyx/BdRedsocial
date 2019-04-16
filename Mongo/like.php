@@ -13,7 +13,7 @@
         echo $likes;
         echo $publicaciones_id;
 
-        $bulk->update(['publicaciones_id' => $id_publicaciones], ['$set' => ['likes' =>$likes]], ['multi' => false, 'upsert' => true]);
+        $bulk->update(['publicaciones_id' => $id_publicaciones], ['$set' => ['likes' =>$likes]], ['multi' => false, 'upsert' => false]);
 	    $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
         $result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk, $writeConcern);
     

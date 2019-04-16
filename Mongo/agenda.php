@@ -18,13 +18,15 @@ try {
 
     // Conexion a la base de batos
    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-   
+
+   $manager2 = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
    $bulk = new MongoDB\Driver\BulkWrite;
    // se obtienen los datos de la url // Se optienen los argumentos
 
     $nickname = htmlspecialchars($_GET['nickname']);
-    $asistentes= htmlspecialchars($_GET['nasistentes']);
+    //try catch que no sirve para culo :v
+
 
     if( isset( $_GET["eventos_id"] )  ){
         $eventos_id = htmlspecialchars($_GET["eventos_id"]);
@@ -46,7 +48,7 @@ try {
 
                 //Se inserta una nueva agenda
                 $bulk->insert(['nickname' => $nickname, 'eventos_id' => $eventos_id]);
-                 $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
+                 $manager2->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
 
                 
             }

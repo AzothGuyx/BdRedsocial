@@ -233,11 +233,12 @@ try {
 	foreach ($result as $row) {
 		//echo "<!-- Boton de asistire -->"
 		//printf("<tr><td>\"%s\"</td><td>\"%s\"</td></tr>\n", $row->feevento, $row->dsevento);
+		
 		echo	'<tr>
 					<td>'.'Nro asistentes ( '.$row->nasistentes.' ) </td><td>'.$row->dsevento.'</td>
 					<td>'.date('m/d/Y H:i:s' ,$row->feevento).'</td>
 					<td>
-						<form methon="get" action="agenda.php">
+						<form methon="get" action="agendar.php">
 							<input type="hidden" name="eventos_id" value="'.$row->eventos_id.'">
 							<input type="hidden" name="feevento" value="'.$row->feevento.'">
 							<input type="hidden" name="dsevento" value="'.$row->dsevento.'">
