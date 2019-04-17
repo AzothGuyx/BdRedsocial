@@ -2,6 +2,7 @@
 
 $cont=0;
 
+
 try {
     $eventos_id = htmlspecialchars($_GET["id_evento"]);
 
@@ -32,6 +33,7 @@ try {
     echo "On line:", $e->getLine(), "\n";     
 	exit(0);	
 }
-echo "asistencia actualizada";
 
+echo "asistencia actualizada";
+echo "<br>";
 ?>

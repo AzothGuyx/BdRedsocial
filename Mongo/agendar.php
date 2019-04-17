@@ -24,27 +24,23 @@ try {
 
     $nickname = htmlspecialchars($_GET['nickname']);
 
-     $asistentes= htmlspecialchars($_GET['nasistentes']);
+     
 
 
     if( isset( $_GET["eventos_id"] )  ){
         $eventos_id = htmlspecialchars($_GET["eventos_id"]);
-    
-        if (isset($_GET["feevento"])){
-            $feevento = htmlspecialchars($_GET['feevento']);
-    
-            if(isset($_GET["dsevento"])){
-                $dsevento = htmlspecialchars($_GET['dsevento']);
-                
-                $evento=intval($eventos_id);
-                //Se inserta una nueva agenda
-                $bulk->insert(['nickname' => $nickname, 'eventos_id' => $evento]);
-                $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
-                $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
+         
+        $evento=intval($eventos_id);
+        //Se inserta una nueva agenda
+          $bulk->insert(['nickname' => $nickname, 'eventos_id' => $evento]);
+          $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+          $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
+       
+               
                
                 
-            }
-        }
+        
+        
     }
     
 
@@ -92,7 +88,7 @@ foreach($resultA as $row){
         echo '<td>'.$row2->dsevento.'</td> </tr>';   
     }
 }
-$asistentes=$asistentes+1;
+
 
 
         echo "</table>";
@@ -101,7 +97,7 @@ $asistentes=$asistentes+1;
         <input type="hidden" name="id_evento" value="'.$eventos_id.'">
         <input class="button mi_color" type="submit" value="Actualizar asistencia">
         </form>';
-        echo $asistentes;
+        
 ?>
 
 </body>
