@@ -19,7 +19,6 @@ try {
     // Conexion a la base de batos
    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
-   $manager2 = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
    $bulk = new MongoDB\Driver\BulkWrite;
    // se obtienen los datos de la url // Se optienen los argumentos
