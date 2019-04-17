@@ -19,6 +19,8 @@ if( isset( $_GET["login"] ) ){
 	echo "<H3>Falta el argumento login</H3>";
 	exit(0);
 }
+
+
 // Fecha de ultimo acceso -  para filtro. Valor igual a -1 (menos uno) indica que debe consultar y actualizar
 if( isset( $_GET["filtro_fecha"] ) ){
 	$filtro_fecha = htmlspecialchars($_GET["filtro_fecha"]);
@@ -32,14 +34,22 @@ if( isset( $_GET["filtro_fecha"] ) ){
 $mysqli  = new mysqli('localhost', 'root', '','redes_sociales');
 if ($mysqli->connect_errno) {
 	echo "Fall� la conexi�n a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
-	
 	exit(0);
 }
+
+//Completar los datos de usuario relevantes.
+$query = 'SELECT id
+FROM usuario 
+WHERE login ='.'\''.$login.'\'';
+	$result = $mysqli->query($query);
+	foreach ($result as $row) {
+	$idUsuario = $row['id'];
+	}
 ?>
 
 <?php
 //consulta los eventos que existe basado en # deasistentes-fecha-descripcion
-	$query = 'SELECT COUNT(A.evento_id), feevento, dsevento
+	$query = 'SELECT A.evento_id as "idEvento", COUNT(A.evento_id), E.feevento, E.dsevento
 	FROM agenda A
 	INNER JOIN evento E ON E.id = A.evento_id
 	GROUP BY A.evento_id';
@@ -56,9 +66,16 @@ if ($mysqli->connect_errno) {
 	</thead>
 	<tbody>';
 	foreach ($result as $row) {
-		echo '<tr>
-		<td><button type="button" class="btn btn-primary">Asistir</button></rd>
-		<td>'.$row['COUNT(A.evento_id)'].'</rd>
+		echo '
+
+		<tr>
+		<td>
+		<form method="get" action="agendar.php">
+		<input type="hidden" name="idUsuario" value="'.$idUsuario.'">
+		<input type="hidden" name="idEvento" value="'.$row['idEvento'].'">
+		<button type="submit" class="btn btn-primary">asistir</button></form>
+		</td>
+		<td>'.$row['COUNT(A.evento_id)'].'</td>
 		<td>'.$row['feevento'].'</td>
 		<td>'.$row['dsevento'].'</td>
 	  </tr>';
