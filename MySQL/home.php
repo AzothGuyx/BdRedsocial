@@ -5,13 +5,7 @@
 <title>Home Practica - Cassandra</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.js"></script>
-<script src="js/main.js"></script>
+
 
 </head>
 <body>
@@ -95,31 +89,31 @@ WHERE login ='.'\''.$login.'\'';
 
 //Consultar la agenda mediante el boton consultar.
 ?>	
+<div class="container">
+  <h2>Ejecutar Acción al Cerrar Modal</h2>
+  <p>
+  Probaremos como ejecutar una accion al detectar el cierre del modal
+  </p>
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-md" id="myBtn">Ocultar Modal</button>
 
-<!-- Button trigger modal -->
-
-<button type="button" class="btn btn-default btn-lg" data-toggle="modal" data-target="#exampleModal">
-Launch demo modal
-</button>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ejecutar Acción al Cerrar Modal</h4>
+        </div>
+        <div class="modal-body">
+          <p>Probaremos como ejecutar una accion al detectar el cierre del modal</p>
+        </div>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+      
     </div>
   </div>
 </div>
-
 
 <!-- 
 <H3>Home</H3>
@@ -140,5 +134,6 @@ Launch demo modal
 <?php
 $mysqli->close();
 ?>
+<script src="js/main.js"></script>
 </body>
 </html>
