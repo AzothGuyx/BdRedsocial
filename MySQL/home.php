@@ -4,7 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Home Practica - Cassandra</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<link rel="stylesheet" href="./style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
+<link rel="stylesheet" href="css/bootstrap.css">
+
 </head>
 <body>
 <H1 class="mi_color">MySQL o MariaDB-Home</H1>
@@ -46,9 +48,11 @@ WHERE login ='.'\''.$login.'\'';
 	$idUsuario = $row['id'];
 	}
 ?>
-
 <?php
-//consulta los eventos que existe basado en # deasistentes-fecha-descripcion
+/*
+*consulta los eventos que existe basado en # deasistentes-fecha-descripción.
+*Permitir agendar uno de estos eventos mediante el boton asistir.
+*/
 	$query = 'SELECT A.evento_id as "idEvento", COUNT(A.evento_id), E.feevento, E.dsevento
 	FROM agenda A
 	INNER JOIN evento E ON E.id = A.evento_id
@@ -82,19 +86,53 @@ WHERE login ='.'\''.$login.'\'';
 	}
 	echo '</tbody>
 		</table>';
+
+//Consultar la agenda mediante el boton consultar.
 	?>
 
-|
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- 
 <H3>Home</H3>
-	<!-- Sin Filtro por fecha -->
+	Sin Filtro por fecha
 	<form name="q1" action="home.php" method="get">
-		<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
+		filtro_fecha con valor 0 indica que debe buscar todo
 		<input type="hidden" name="filtro_fecha" value="0" >
 		<input type="hidden" name="login" value="<?php echo $login;?>" >
 		<button class="button mi_color">Sin Filtro</button>
 	</form>
 
-	
+	 -->
 
 	<!-- Boton de consultar los eventos que estoy matriculado -->
 	
@@ -103,5 +141,7 @@ WHERE login ='.'\''.$login.'\'';
 <?php
 $mysqli->close();
 ?>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.js"></script>
 </body>
 </html>

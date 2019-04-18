@@ -22,7 +22,11 @@
 //obteniendo parametros de header_remov  
 $idUsuario = htmlspecialchars($_GET['idUsuario']);
 $idEvento = htmlspecialchars($_GET['idEvento']);
-echo '<h1>id del usuario:'.$idUsuario.'y id evento es:'.$idEvento.'</h1>';
+//insertar una nueva agenda con los parametros obtenidos
+$query = 'INSERT INTO agenda (evento_id, usuario_id)
+VALUES ('.$idEvento.','.$idUsuario.')';
+$result = $mysqli->query($query);
+echo '<h1>Has añadido este evento a tu agenda</h1>';
 ?>
 </body>
 </html>
