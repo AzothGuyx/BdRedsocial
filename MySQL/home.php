@@ -9,9 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+
 </head>
 <body>
 <H1 class="mi_color">MySQL o MariaDB-Home</H1>
@@ -53,16 +51,27 @@ WHERE login ='.'\''.$login.'\'';
 	$idUsuario = $row['id'];
 	}
 ?>
+<!-- Mostrar ultimo ingreso -->
+<header>
+<?php
+$query = 'SELECT *
+FROM`usuario`
+WHERE id='.'\''.$idUsuario.'\'';
+foreach ($result as $row) {
+	echo 'Hola '.$login.' tu ultimo ingreso fue '.$row['ultimo_ingreso'].'';
+}
+?>
+</header>
+
 <?php
 /*
 *consulta los eventos que existe basado en # deasistentes-fecha-descripción.
 *Permitir agendar uno de estos eventos mediante el boton asistir.
 */
-	$query = 'SELECT A.evento_id as "idEvento", COUNT(A.evento_id), E.feevento, E.dsevento
-	FROM agenda A
-	INNER JOIN evento E ON E.id = A.evento_id
-	GROUP BY A.evento_id';
-
+	$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id as "idEvento"
+	FROM evento E
+	LEFT JOIN  agenda A ON E.id = A.evento_id
+	GROUP BY E.id';
 	$result = $mysqli->query($query);
 	echo '<table class="table">
 	<thead class="thead-dark">
@@ -76,13 +85,11 @@ WHERE login ='.'\''.$login.'\'';
 	<tbody>';
 	foreach ($result as $row) {
 		echo '
-
 		<tr>
 		<td>
-		<form method="get" action="agendar.php">
-		<input type="hidden" name="idUsuario" value="'.$idUsuario.'">
-		<input type="hidden" name="idEvento" value="'.$row['idEvento'].'">
-		<button type="submit" class="btn btn-primary">asistir</button></form>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarEvento'.$row['idEvento'].'">
+		  Asistir
+		</button>
 		</td>
 		<td>'.$row['COUNT(A.evento_id)'].'</td>
 		<td>'.$row['feevento'].'</td>
@@ -92,71 +99,66 @@ WHERE login ='.'\''.$login.'\'';
 	echo '</tbody>
 		</table>';
 
-//Consultar la agenda mediante el boton consultar.
-?>	
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
+
+		
+?>
+
+		<!-- Modal aGENDAR EVENTO -->
+		
+
+
+
+
+<!-- //Consultar la agenda mediante el boton consultar. -->
+
+
+<!-- Boton que llama el pop up(modal) -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verAgenda">
+Revisar mi agenda
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="verAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
-	  <!-- Titulo del pop up -->
-        <h5 class="modal-title" id="exampleModalLabel">Mi agenda</h5>
+        <h5 class="modal-title" id="verAgendaTitle">Mi agenda</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-	  <!-- Cuerpo del pop up -->
       <div class="modal-body">
-		<?php
-		$query = 'SELECT A.evento_id as "idEvento", COUNT(A.evento_id), E.feevento, E.dsevento
-		FROM agenda A
-		INNER JOIN evento E ON E.id = A.evento_id
-		GROUP BY A.evento_id';
+	  <?php
+		$query = 'SELECT E.dsevento, E.feevento
+		FROM evento E
+		INNER JOIN agenda A ON A.evento_id = E.id
+		WHERE A.usuario_id ='.'\''.$idUsuario.'\'';
 	
 		$result = $mysqli->query($query);
 		echo '<table class="table">
 		<thead class="thead-dark">
 		  <tr>
-		  <th scope="col">Asistir al evento</th>
-		  <th scope="col">Numero de asistentes</th>
+			<th scope="col">Descripcion del evento</th>
 			<th scope="col">Fecha del evento</th>
-			<th scope="col">Descripcion del eventoast</th>
 		  </tr>
 		</thead>
 		<tbody>';
 		foreach ($result as $row) {
-			echo '
-	
-			<tr>
-			<td>
-			<form method="get" action="agendar.php">
-			<input type="hidden" name="idUsuario" value="'.$idUsuario.'">
-			<input type="hidden" name="idEvento" value="'.$row['idEvento'].'">
-			<button type="submit" class="btn btn-primary">asistir</button></form>
-			</td>
-			<td>'.$row['COUNT(A.evento_id)'].'</td>
-			<td>'.$row['feevento'].'</td>
+			echo '<tr>
 			<td>'.$row['dsevento'].'</td>
+			<td>'.$row['feevento'].'</td>
 		  </tr>';
 		}
 		echo '</tbody>
 			</table>';
 		?>
       </div>
-	  <!-- pie del pop up -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
 </div>
-
 <!-- 
 <H3>Home</H3>
 	Sin Filtro por fecha
