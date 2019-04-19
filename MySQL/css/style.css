@@ -1,5 +1,5 @@
 body {
-	background-color: #0094f6;
+	background: #0094f6;
 	margin: 30px auto;
 	color: #222;
 }
@@ -27,7 +27,9 @@ table{
 section{
 	padding: 5%;
 	width: 100%;
+	height: auto;
 	align-content: center;
+	background: #ccc;
 }
 article{
 	margin-top: 5%;

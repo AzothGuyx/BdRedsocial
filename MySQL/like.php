@@ -37,6 +37,6 @@
              echo 'Excepción capturada: ',  $e->getMessage(), "\n";
         }
         ?>
-
+        
 </body>
 </html>
