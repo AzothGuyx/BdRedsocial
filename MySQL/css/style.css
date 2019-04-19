@@ -1,6 +1,5 @@
 body {
-	background: #ccdfec;
-	width: 900px;
+	background-color: #0094f6;
 	margin: 30px auto;
 	color: #222;
 }
@@ -22,6 +21,7 @@ div {
 	border-bottom: solid 1px #ccc;
 }
 table{
+	
 	text-align: center;
 }
 section{
@@ -88,8 +88,6 @@ article{
 	font-size: 11px;
 	padding: .2em 1em .275em;
 }
-
-
 /* mi_color */
 .mi_color {
 	color: #fae7e9;
