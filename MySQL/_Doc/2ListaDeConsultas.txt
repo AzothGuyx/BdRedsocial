@@ -30,8 +30,19 @@
         $query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
                 WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
 
-
-
 //Actualizacion de Likes de una Publicaciones
-//Actualizacion de asistencias de los Eventos 
+	$like = htmlspecialchars($_GET['like']);
+        $idP = htmlspecialchars($_GET['idP']);
+        $numLike = 0;
+        $numLike = $like + 1;
+        $query ='UPDATE likes SET numLikes = '.$numLike.' WHERE publicacion_id ='.$idP.'';
+        $result = $mysqli->query($query);
+
+//Actualizacion de asistencias de los Eventos
+
+	$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+	$result = $mysqli->query($query);
+
 //Obtencion de asistencias del usuario
+	$query = 'SELECT E.dsevento, E.feevento FROM evento E INNER JOIN agenda A ON A.evento_id = E.id WHERE A.usuario_id ='.'\''.$idUsuario.'\'';
+	$result = $mysqli->query($query);
