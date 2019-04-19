@@ -36,19 +36,30 @@ $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 /* ==--> Crear proceso batch y se preparan las acciones*/
 // Documentación https://www.php.net/manual/es/mongodb-driver-manager.executebulkwrite.php
 $bulk = new MongoDB\Driver\BulkWrite;
+	$cont=0;
 
+    $filter= [];
+    $options = [];
+    $query = new MongoDB\Driver\Query($filter, $options);
+    $result = $manager->executeQuery('RedSocial.Publicaciones', $query);
+
+	foreach ($result as $row) {
+		$cont=$cont+1;
+	}
+
+	$cont=$cont+1;
 /* ==--> Ejemplo de Insert*/
-$id_documento = $bulk->insert(['_id' => 1, 'x' => 1]);
+$id_documento = $bulk->insert(['dspublicacion' => $dspublicacion,'likes' => 0,'catprincipal' => $categoria_nombre,'publicaciones_id' =>$cont]);
 //var_dump($id_documento);
 
 
 /* ==--> Ejemplo de Actualización*/
 
-$id_documento = $bulk->update(['x' => 2], ['$set' => ['x' => 1]], ['multi' => false, 'upsert' => false]);
+//$id_documento = $bulk->update(['x' => 2], ['$set' => ['x' => 1]], ['multi' => false, 'upsert' => false]);
 //var_dump($id_documento);
 
 /* ==--> Se ejecuta contra una base de datos y una colexion*/
-$result = $manager->executeBulkWrite('NOMBRE_DE_LA_BASE_DE_DATOS.NOMBRE_DE_LA_COLECCION', $bulk);
+$result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk);
 
 /*retornar el texto con resultado*/
 echo "OK";

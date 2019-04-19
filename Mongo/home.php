@@ -165,6 +165,7 @@ try {
 		$nombre=$row->usuarios_nombre;
 		$categria_ppal = $row->catprincipal;
 		$fecha_ultimo_ingreso = $row->ultingreso;
+		$catSecond=$row->categorias_nombre;
 		break;
 	}
 	//se acutaliza la fecha de ultimo ingreso
@@ -283,11 +284,17 @@ try {
 
 			echo '<a href="publicar.php?categoria_ppal='.$categria_ppal.'"><button class="button mi_color">Publicar</button></a>';
 
+			$secundarias='';
+
+			for ($i=0; $i <sizeof($catSecond) ; $i++) { 
+				$secundarias=$secundarias.','.$catSecond[$i];
+			}
+
 			echo "<hr>";
 			echo $nombre. " - ";
 			echo date('m/d/Y H:i:s' , $fecha_ultimo_ingreso);
 			echo " - ".$categria_ppal;
-
+			echo "-".$secundarias;
 			
 	?>
 
