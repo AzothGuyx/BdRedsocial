@@ -93,8 +93,7 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-					$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
-					WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
+					$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
 					$result = $mysqli->query($query);
 					foreach ($result as $row) {
 						echo '<tr>
@@ -113,7 +112,8 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					?>
 				</tbody>
 			</table>
-				</section>
+		</section>
+		<hr>
 	<!-- HDA#2:
 	consulta los eventos en los que esta registrado el usuario
 	Permitir agendar uno de estos eventos mediante el boton asistir.--> 
@@ -202,7 +202,8 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					?>
 				</tbody>
 			</table>
-		</section>  
+		</section> 
+		<hr>
 		<!-- HDA #4:
 Insertar una nueva publicacion en el grupo principal del usuario-->
 		<aside>
