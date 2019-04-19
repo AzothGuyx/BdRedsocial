@@ -18,42 +18,29 @@ try {
 
     // Conexion a la base de batos
    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
-   $manager2 = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
    $bulk = new MongoDB\Driver\BulkWrite;
    // se obtienen los datos de la url // Se optienen los argumentos
 
     $nickname = htmlspecialchars($_GET['nickname']);
-    //try catch que no sirve para culo :v
-    
-     $asistentes= htmlspecialchars($_GET['nasistentes']);
+
+     
 
 
     if( isset( $_GET["eventos_id"] )  ){
         $eventos_id = htmlspecialchars($_GET["eventos_id"]);
-    
-        if (isset($_GET["feevento"])){
-            $feevento = htmlspecialchars($_GET['feevento']);
-    
-            if(isset($_GET["dsevento"])){
-                $dsevento = htmlspecialchars($_GET['dsevento']);
+         
+        $evento=intval($eventos_id);
+        //Se inserta una nueva agenda
+          $bulk->insert(['nickname' => $nickname, 'eventos_id' => $evento]);
+          $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+          $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
+       
+               
+               
                 
-                $evento=intval($eventos_id);
-                
-                $asistentes=$asistentes+1;
-
-                //en esta parte actualizaremos los nasistentes en eventos 
-                $bulk->update(['eventos_id' =>['$eq' => $evento]], ['$set' => ['nasistentes' => $asistentes]], ['multi' => false, 'upsert' => false]);
-                $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
-                $result = $manager->executeBulkWrite('RedSocial.Eventos', $bulk, $writeConcern);
-
-                //Se inserta una nueva agenda
-                $bulk->insert(['nickname' => $nickname, 'eventos_id' => $eventos_id]);
-                 $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
-
-                
-            }
-        }
+        
+        
     }
     
 
@@ -81,8 +68,6 @@ $options = [
 
  $resultA = $manager->executeQuery('RedSocial.Asistencias', $query);
 
-//$query = 'SELECT eventos_id, dsevento, agendas_id, nickname FROM agendas WHERE nickname='.'\''.$nickname.'\'';
-//$result = $sesion->execute($query);
 
 
 echo '<table cellspacing="10">';
@@ -105,7 +90,14 @@ foreach($resultA as $row){
 }
 
 
-echo "</table>";
+
+        echo "</table>";
+        echo '<br>';
+        echo'<form method="get" action="CAsistencia.php">
+        <input type="hidden" name="id_evento" value="'.$eventos_id.'">
+        <input class="button mi_color" type="submit" value="Actualizar asistencia">
+        </form>';
+        
 ?>
 
 </body>

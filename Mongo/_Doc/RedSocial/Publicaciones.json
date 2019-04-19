@@ -1,0 +1,9 @@
+{"dspublicacion":"Hola Mundo","likes":{"$numberInt":"0"},"catprincipal":"ingenierias","publicaciones_id":{"$numberInt":"1"}}
+{"dspublicacion":"Me siento mal","likes":{"$numberInt":"4"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"2"}}
+{"dspublicacion":"LOl","likes":{"$numberInt":"0"},"catprincipal":"sistemas","publicaciones_id":{"$numberInt":"3"}}
+{"dspublicacion":"Nani","likes":{"$numberInt":"0"},"catprincipal":"telecomunicaciones","publicaciones_id":{"$numberInt":"4"}}
+{"dspublicacion":"Hello","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"5"}}
+{"dspublicacion":"Holis","likes":{"$numberInt":"0"},"catprincipal":"finanzas","publicaciones_id":{"$numberInt":"6"}}
+{"dspublicacion":"eooo","likes":{"$numberInt":"1"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"7"}}
+{"dspublicacion":"que se dice :v","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"8"}}
+{"dspublicacion":"hello :v","likes":{"$numberInt":"2"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"9"}}

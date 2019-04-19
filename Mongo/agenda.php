@@ -19,42 +19,20 @@ try {
     // Conexion a la base de batos
    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
-   $manager2 = new MongoDB\Driver\Manager("mongodb://localhost:27017");
 
    $bulk = new MongoDB\Driver\BulkWrite;
    // se obtienen los datos de la url // Se optienen los argumentos
 
     $nickname = htmlspecialchars($_GET['nickname']);
-    //try catch que no sirve para culo :v
-
-
-    if( isset( $_GET["eventos_id"] )  ){
-        $eventos_id = htmlspecialchars($_GET["eventos_id"]);
     
-        if (isset($_GET["feevento"])){
-            $feevento = htmlspecialchars($_GET['feevento']);
+
+    $filter = ["nickname" => ['$eq' =>$nickname]];
+    $options = [
+       'maxTimeMS' => 1000];
     
-            if(isset($_GET["dsevento"])){
-                $dsevento = htmlspecialchars($_GET['dsevento']);
-                
-                $evento=intval($eventos_id);
-                
-                $asistentes=$asistentes+1;
-
-                //en esta parte actualizaremos los nasistentes en eventos 
-                $bulk->update(['eventos_id' =>['$eq' => $evento]], ['$set' => ['nasistentes' => $asistentes]], ['multi' => false, 'upsert' => false]);
-                $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
-                $result = $manager->executeBulkWrite('RedSocial.Eventos', $bulk, $writeConcern);
-
-                //Se inserta una nueva agenda
-                $bulk->insert(['nickname' => $nickname, 'eventos_id' => $eventos_id]);
-                 $manager2->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);
-
-                
-            }
-        }
-    }
+     $query = new MongoDB\Driver\Query($filter, $options);
     
+     $resultA = $manager->executeQuery('RedSocial.Asistencias', $query);
 
    
 
@@ -72,16 +50,7 @@ try {
 	exit(0);	
 }
 //se procede con la consulta para traer los eventos a los que asitira la persona
-$filter = ["nickname" => ['$eq' =>$nickname]];
-$options = [
-   'maxTimeMS' => 1000];
 
- $query = new MongoDB\Driver\Query($filter, $options);
-
- $resultA = $manager->executeQuery('RedSocial.Asistencias', $query);
-
-//$query = 'SELECT eventos_id, dsevento, agendas_id, nickname FROM agendas WHERE nickname='.'\''.$nickname.'\'';
-//$result = $sesion->execute($query);
 
 
 echo '<table cellspacing="10">';
