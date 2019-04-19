@@ -1,0 +1,37 @@
+//Obtencion de datos del usuario
+
+        $query = 'SELECT id, ultimo_ingreso, nombre FROM usuario WHERE login ='.'\''.$login.'\'';
+	$result = $mysqli->query($query);
+	foreach ($result as $row) {
+		$idUsuario = $row['id'];
+		$ui = $row['ultimo_ingreso'];
+		$nombre = $row['nombre'];
+	}
+
+//Obtencion de categoria principal
+
+       	$query = 'SELECT principal FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\'';
+	$result = $mysqli->query($query);
+	foreach ($result as $row) {
+		$categoriaP = $row['principal'];
+	}
+
+//Actualizacion de ultimo ingreso del usuario
+
+        $query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
+	$result = $mysqli->query($query);
+
+
+//Eventos filtrados
+         $query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+
+//Publicaciones filtradas respecto a las categorias del usuario
+
+        $query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
+                WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
+
+
+
+//Actualizacion de Likes de una Publicaciones
+//Actualizacion de asistencias de los Eventos 
+//Obtencion de asistencias del usuario

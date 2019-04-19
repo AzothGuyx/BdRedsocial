@@ -32,11 +32,11 @@
             $numLike = $like + 1;
             $query ='UPDATE likes SET numLikes = '.$numLike.' WHERE publicacion_id ='.$idP.'';
             $result = $mysqli->query($query);
-            echo'Registro exitoso, ahora estas inscrita en este evento';
+            echo'Like registrado';
         }catch (Exception $e) {
              echo 'Excepción capturada: ',  $e->getMessage(), "\n";
         }
         ?>
-
+        
 </body>
 </html>

@@ -1,0 +1,68 @@
+//Obtencion de datos del usuario
+	$filter = ["nickname" => ['$eq' =>$login]];
+	$options = [
+		'maxTimeMS' => 1000
+	];
+	$query = new MongoDB\Driver\Query($filter, $options);
+	$result = $manager->executeQuery('RedSocial.Usuarios', $query);
+
+
+//Actualizacion de ultimo ingreso del usuario
+
+        $bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultingreso' => time()]], ['multi' => false, 'upsert' => false]);
+        $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+        $result = $manager->executeBulkWrite('RedSocial.Usuarios', $bulk, $writeConcern);
+
+//Eventos filtrados
+	$filter = ['feevento' => ['$gte'=>$fecha_ultimo_ingreso]];
+	$options = [];
+	$query = new MongoDB\Driver\Query($filter, $options);
+
+//Publicaciones filtradas respecto a las categorias del usuario
+
+        $filterP= ['catprincipal' => ['$eq'=>$categria_ppal]];
+	$optionsP = [];
+	$queryP = new MongoDB\Driver\Query($filterP, $optionsP);
+	$resultP = $manager->executeQuery('RedSocial.Publicaciones',$queryP);  7
+
+//Actualizacion de Likes de una Publicaciones
+        $likes=$likes+1;
+        $id_publicaciones=intval($publicaciones_id);
+        echo $likes;
+        echo $publicaciones_id;
+        $bulk->update(['publicaciones_id' => $id_publicaciones], ['$set' => ['likes' =>$likes]], ['multi' => false, 'upsert' => false]);
+	$writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+        $result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk, $writeConcern);
+//Actualizacion de asistencias de los Eventos 
+        $cont=0;
+        $filter= ['eventos_id' => ['$eq'=>$evento]];
+        $options = [];
+        $query = new MongoDB\Driver\Query($filter, $options);
+        $result = $manager->executeQuery('RedSocial.Asistencias', $query);
+
+        foreach ($result as $row) {
+                 $cont=$cont+1;
+        }
+        
+        
+        $bulk->update(['eventos_id' =>['$eq' => $evento]], ['$set' => ['nasistentes' => $cont]], ['multi' => false, 'upsert' => false]);
+        $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+        $result = $manager->executeBulkWrite('RedSocial.Eventos', $bulk, $writeConcern);
+
+//Obtencion de asistencias del usuario
+        $nickname = htmlspecialchars($_GET['nickname']);
+        $eventos_id = htmlspecialchars($_GET["eventos_id"]);
+        $evento=intval($eventos_id);
+        //Se inserta una nueva agenda
+                $bulk->insert(['nickname' => $nickname, 'eventos_id' => $evento]);
+                $writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
+                $manager->executeBulkWrite('RedSocial.Asistencias', $bulk, $writeConcern);       
+
+        //se trae la asostencia de la persona
+                $filter = ["nickname" => ['$eq' =>$nickname]];
+                $options = [
+                'maxTimeMS' => 1000];
+
+                $query = new MongoDB\Driver\Query($filter, $options);
+
+                $resultA = $manager->executeQuery('RedSocial.Asistencias', $query);  

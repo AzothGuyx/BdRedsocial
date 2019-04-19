@@ -1,0 +1,70 @@
+//Asistencias
+    {
+    "nickname":"juanf",
+    "eventos_id":1
+    }
+    {
+    "nickname":"stephanie",
+    "eventos_id":1
+    }
+    {
+    "nickname":"stephanie",
+    "eventos_id":2
+    }
+
+//Eventos
+    {
+    "eventos_id":1,
+    "feevento":1553961108,
+    "dsevento": "Gamer",
+    "nasistentes": 0
+    }
+    {
+    "eventos_id":2,
+    "feevento":1553874708,
+    "dsevento": "Otakus",
+    "nasistentes": 0
+    }
+    {
+    "eventos_id":3,
+    "feevento":1553788308,
+    "dsevento": "IOT",
+    "nasistentes": 0
+    }
+    {
+    "eventos_id":4,
+    "feevento":1553701908,
+    "dsevento": "UX",
+    "nasistentes": 0
+    }
+    {
+    "eventos_id":5,
+    "feevento":1553615508,
+    "dsevento": "Tecnicas Avanzadas",
+    "nasistentes": 0
+    }
+    {
+    "eventos_id":6,
+    "feevento":1553529108,
+    "dsevento": "Partido",
+    "nasistentes": 0
+    }
+//Publicaciones
+    {"dspublicacion":"Hola Mundo","likes":{"$numberInt":"0"},"catprincipal":"ingenierias","publicaciones_id":{"$numberInt":"1"}}
+    {"dspublicacion":"Me siento mal","likes":{"$numberInt":"4"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"2"}}
+    {"dspublicacion":"LOl","likes":{"$numberInt":"0"},"catprincipal":"sistemas","publicaciones_id":{"$numberInt":"3"}}
+    {"dspublicacion":"Nani","likes":{"$numberInt":"0"},"catprincipal":"telecomunicaciones","publicaciones_id":{"$numberInt":"4"}}
+    {"dspublicacion":"Hello","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"5"}}
+    {"dspublicacion":"Holis","likes":{"$numberInt":"0"},"catprincipal":"finanzas","publicaciones_id":{"$numberInt":"6"}}
+    {"dspublicacion":"eooo","likes":{"$numberInt":"1"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"7"}}
+    {"dspublicacion":"que se dice :v","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"8"}}
+    {"dspublicacion":"hello :v","likes":{"$numberInt":"2"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"9"}}
+
+//Usuarios
+    {"nickname":"stephanie","usuarios_nombre":"STEPHANIE ABAD","ultingreso":1553615508,"catprincipal":"udem","categorias_nombre":["ingenierias","sistemas"]}
+    {"nickname":"juand","usuarios_nombre":"JUAN DAVID ABAD DIAZ","ultingreso":1553615508,"catprincipal":"derecho","categorias_nombre":["ingenierias","telecomunicaciones"]}
+    {"nickname":"piedad","usuarios_nombre":"PIEDAD ABAD ALVAREZ","ultingreso":1553097108,"catprincipal":""telecomunicaciones,"categorias_nombre":["derecho"]}
+    {"nickname":"melisa","usuarios_nombre":"MELISA ABAD CARRASCO","ultingreso":1553097108,"catprincipal":"finanzas","categorias_nombre":["finanzas"]}
+    {"nickname":"manuela","usuarios_nombre":"MANUELA ABAD DUQUE","ultingreso":1553356308,"catprincipal":"sistemas","categorias_nombre":["ingenierias","udem"]}
+    {"nickname":"juanf","usuarios_nombre":"JUAN FERNANDO ABAD ECHEVERRI","ultingreso":1553529108,"catprincipal":"ingenierias","categorias_nombre":["derecho","udem"]}
+    {"nickname":"rodri","usuarios_nombre":"RODRIGO LOPEZ GARCIA","ultingreso":1553788308,"catprincipal":"ingenierias","categorias_nombre":["telecomunicaciones","derecho"]}
