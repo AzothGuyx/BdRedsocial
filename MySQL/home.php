@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>Home Practica - Cassandra</title>
@@ -58,7 +58,15 @@
 //Actualiza la fecha de ultimo ingreso
 	$query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
 	$result = $mysqli->query($query);
-
+	
+// Fecha de ultimo acceso -  para filtro. Valor igual a -1 (menos uno) indica que debe consultar y actualizar
+	
+	if( isset( $_GET["filtro_fecha"] ) ){
+		$filtro_fecha = htmlspecialchars($_GET["filtro_fecha"]);
+	} else {
+		echo "<H3>Falta el argumento filtro_fecha</H3>";
+		exit(0);
+	}
 
 	?>
 <!-- Mostrar ultimo ingreso -->
@@ -66,14 +74,14 @@
 		<?php
 			echo '<h6>Hola <b>'.$login.'</b> tu ultimo ingreso fue <b>'.$ui.'</b></h6>';
 		?>
-		<button type="button" class="btn btn-primary " onclick= "reload()"><img src="img/update.png" width="25px" heignt="25px"></button>
+		<span  type="button" id="botonFixed" class="btn btn-primary " onclick= "reload()"><img src="img/update.png" width="25px" heignt="25px"></span>
 	</header>
 
 
 <!-- HDA #1 y #2 -->
 	<div class="card">
 		<div class="card-header">
-			Eventos  <button type="button" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto"></button>
+	<b>EVENTOS:</b>
 		</div>
 		<div class="card-body"> 
 <!-- HDA#1:
@@ -82,6 +90,26 @@ Los eventos deben ser posteriores a la fecha de ultimo ingreso.
 Permitir agendar uno de estos eventos mediante el boton asistir.
 --> 
 		<section id="tablePublicacion">
+		<table>
+				<tr>
+					<td>
+						<form name="q1" action="home.php" method="get">
+							<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
+							<input type="hidden" name="filtro_fecha" value="0" >
+							<input type="hidden" name="login" value="<?php echo $login;?>" >
+							<button type="submit" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto">Sin filtro</button>
+						</form>
+					</td>
+					<td>
+						<form name="q0" action="home.php" method="get">
+							<!-- filtro_fecha con valor -1 indica que debe buscar solo sobre la fecha de ultimo ingreso -->
+							<input type="hidden" name="filtro_fecha" value="-1" >
+							<input type="hidden" name="login" value="<?php echo $login;?>" >
+							<button type="submit" class="btn btn-warning"><img src="img/filtro_on.png" width="15px" height="auto">Con filtro</button>
+						</form>
+					</td>
+				</tr>
+			</table>
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -93,7 +121,11 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-					$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+					if ($filtro_fecha == 0){
+						$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id  GROUP BY E.id ORDER BY e.feevento ASC';
+					}else{
+						$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+					}
 					$result = $mysqli->query($query);
 					foreach ($result as $row) {
 						echo '<tr>
