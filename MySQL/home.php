@@ -43,31 +43,40 @@ if ($mysqli->connect_errno) {
 }
 
 //Completar los datos de usuario relevantes.
-$query = 'SELECT id
+$query = 'SELECT id, ultimo_ingreso, nombre
 FROM usuario 
 WHERE login ='.'\''.$login.'\'';
 	$result = $mysqli->query($query);
 	foreach ($result as $row) {
 	$idUsuario = $row['id'];
+	$ui = $row['ultimo_ingreso'];
+	$nombre = $row['nombre'];
+	}
+	
+// categoria principal del usuario.
+$query = 'SELECT principal
+FROM categoria
+WHERE usuario_id ='.'\''.$idUsuario.'\'';
+	$result = $mysqli->query($query);
+	foreach ($result as $row) {
+	$categoriaP = $row['principal'];
 	}
 ?>
 <!-- Mostrar ultimo ingreso -->
 <header>
 <?php
-$query = 'SELECT *
-FROM`usuario`
-WHERE id='.'\''.$idUsuario.'\'';
-foreach ($result as $row) {
-	echo 'Hola '.$login.' tu ultimo ingreso fue '.$row['ultimo_ingreso'].'';
-}
+	echo 'Hola '.$login.' tu ultimo ingreso fue '.$ui.'';
 ?>
 </header>
 
+
+<!-- HDA#1:
+consulta los eventos que existe basado en # deasistentes-fecha-descripción.
+Permitir agendar uno de estos eventos mediante el boton asistir.
+ -->
+ <section>
+ <article id="tableEvento">
 <?php
-/*
-*consulta los eventos que existe basado en # deasistentes-fecha-descripción.
-*Permitir agendar uno de estos eventos mediante el boton asistir.
-*/
 	$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id as "idEvento"
 	FROM evento E
 	LEFT JOIN  agenda A ON E.id = A.evento_id
@@ -87,7 +96,7 @@ foreach ($result as $row) {
 		echo '
 		<tr>
 		<td>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agendarEvento'.$row['idEvento'].'">
+		<button type="button" class="btn btn-primary" onclick="miFuncion("sdsadsad")">
 		  Asistir
 		</button>
 		</td>
@@ -102,16 +111,11 @@ foreach ($result as $row) {
 
 		
 ?>
+ </article>
 
-		<!-- Modal aGENDAR EVENTO -->
-		
+ <article id="btnVerA">
 
-
-
-
-<!-- //Consultar la agenda mediante el boton consultar. -->
-
-
+<!-- //HDA// Consultar la agenda mediante el boton consultar. -->
 <!-- Boton que llama el pop up(modal) -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verAgenda">
 Revisar mi agenda
@@ -159,24 +163,99 @@ Revisar mi agenda
     </div>
   </div>
 </div>
-<!-- 
-<H3>Home</H3>
-	Sin Filtro por fecha
-	<form name="q1" action="home.php" method="get">
-		filtro_fecha con valor 0 indica que debe buscar todo
-		<input type="hidden" name="filtro_fecha" value="0" >
-		<input type="hidden" name="login" value="<?php echo $login;?>" >
-		<button class="button mi_color">Sin Filtro</button>
-	</form>
+</article>
+	</section>
 
-	 -->
+	<section>
 
-	<!-- Boton de consultar los eventos que estoy matriculado -->
-	
-	<!-- Lista de Publicaciones -->
+<article>
+<article id="tableLike">
+<!-- HDA#3:
+Permitir dar like a las publicaciones. -->
+<?php
+	$query = 'SELECT L.numLikes as "like", P.dspublicacion as "pub", P.id as "idP"
+	FROM publicacion P
+	INNER JOIN likes L ON P.id = L.publicacion_id';
+	$result = $mysqli->query($query);
+	echo '<table class="table">
+	<thead class="thead-dark">
+	  <tr>
+	  <th scope="col">Like</th>
+	  <th scope="col">Numero de likes</th>
+		<th scope="col">Publicacion</th>
+	  </tr>
+	</thead>
+	<tbody>';
+	foreach ($result as $row) {
+		echo '
+		<tr>
+		<td>
+		<button type="button" class="btn btn-primary" onclick="like.php?id='.$row['idP'].'">
+		  <img src="img/like_on" width="15px" heigh="15px"> Like</button>
+		</td>
+		<td>'.$row['like'].'</td>
+		<td>'.$row['pub'].'</td>
+	  </tr>';
+	}
+	echo '</tbody>
+		</table>';		
+?>
+</article>
+
+
+<article id="btnNuevaP">
+<!-- //HDA// Hacer una nueva publicacion en el grupo principal. -->
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearPublicacion">
+Crear publicación
+</button>
+<?php
+if(isset($_POST['submit']))
+{
+    try
+    {
+        $dspublicacion = $_POST['dspublicacion'];
+        $query = 'INSERT INTO publicacion (dspublicacion, usuario_id, categoria_id
+        VALUES ('.$dspublicacion.','.$idUsuario.','.$categoriaP.')';
+        $result = $mysqli->query($query);
+    }catch(Exception $e) {
+        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+    }
+}
+?>
+<div class="modal fade" id="CrearPublicacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva publicación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	 	<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Descripción:</label>
+            <textarea class="form-control" id="message-text" name="dspublicacion	"></textarea>
+			
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </div>
+    </div>
+  </div>
+</div>
+</article>
+</article>
+
+</section>
 
 <?php
 $mysqli->close();
 ?>
+ </section>
 </body>
 </html>
