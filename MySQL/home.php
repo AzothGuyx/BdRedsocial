@@ -71,13 +71,18 @@
 	</header>
 
 
+<!-- HDA #1 y #2 -->
+	<div class="card">
+		<div class="card-header">
+			Featured
+		</div>
+		<div class="card-body"> 
 <!-- HDA#1:
 consulta los eventos que existe basado en # deasistentes-fecha-descripción.
 Los eventos deben ser posteriores a la fecha de ultimo ingreso.
 Permitir agendar uno de estos eventos mediante el boton asistir.
--->
-	<section>
-		<article id="tableEvento">
+--> 
+		<div id="tablePublicacion">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -89,9 +94,9 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-           			 $query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
-            		$result = $mysqli->query($query);
-           			 foreach ($result as $row) {
+					$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+					$result = $mysqli->query($query);
+					foreach ($result as $row) {
 						echo '<tr>
 								<td>
 									<form method="get" action="agendar.php">
@@ -105,61 +110,66 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 								<td>'.$row['dsevento'].'</td>
 							</tr>';
 					}
-            ?>
+					?>
 				</tbody>
 			</table>
-		</article>
-<!-- HDA#2:
-consulta los eventos en los que esta registrado el usuario
-Permitir agendar uno de estos eventos mediante el boton asistir.-->
-		<article id="btnVerA">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#verAgenda">Revisar mi agenda</button>
-			<!-- Modal -->
-			<div class="modal fade" id="verAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
-				aria-hidden="true">
-				<div class="modal-dialog modal-dialog-scrollable" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title" id="verAgendaTitle">Mi agenda</h5>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<table class="table">
-								<thead class="thead-dark">
-									<tr>
-										<th scope="col">Descripcion del evento</th>
-										<th scope="col">Fecha del evento</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$query = 'SELECT E.dsevento, E.feevento FROM evento E INNER JOIN agenda A ON A.evento_id = E.id WHERE A.usuario_id ='.'\''.$idUsuario.'\'';
-									$result = $mysqli->query($query);
-									foreach ($result as $row) {
-										echo '<tr>
-												<td>'.$row['dsevento'].'</td>
-												<td>'.$row['feevento'].'</td>
-											</tr>';
-									}
-									?>
-								</tbody>
-							</table>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+		</div>
+	<!-- HDA#2:
+	consulta los eventos en los que esta registrado el usuario
+	Permitir agendar uno de estos eventos mediante el boton asistir.--> 
+		<div id="btnVerA">
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#verAgenda"><img src="img/agenda.png" whidth="40px" height="40px"><h4>Revisar mi agenda</h4></button>
+				<!-- Modal -->
+				<div class="modal fade" id="verAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
+					aria-hidden="true">
+					<div class="modal-dialog modal-dialog-scrollable" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="verAgendaTitle">Mi agenda</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<table class="table">
+									<thead class="thead-dark">
+										<tr>
+											<th scope="col">Descripcion del evento</th>
+											<th scope="col">Fecha del evento</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$query = 'SELECT E.dsevento, E.feevento FROM evento E INNER JOIN agenda A ON A.evento_id = E.id WHERE A.usuario_id ='.'\''.$idUsuario.'\'';
+										$result = $mysqli->query($query);
+										foreach ($result as $row) {
+											echo '<tr>
+													<td>'.$row['dsevento'].'</td>
+													<td>'.$row['feevento'].'</td>
+												</tr>';
+										}
+										?>
+									</tbody>
+								</table>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</article>
-	</section>
-	<section>
-<!-- HDA#3:
+		</div>
+	</div>
+<!-- HDA #3 y #4 -->
+<div class="card">
+	<div class="card-header">PUBLICACIONES
+	</div>
+	<div class="card-body">
+		<!-- HDA#3:
 Consultar todas las publicaciones.
-Actualizar el numero de likes de una publicacón agregandole 1.-->
-		<article id="tableLike">
+Actualizar el numero de likes de una publicacón agregandole 1.-->	
+		<div id="tablePublicacion">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -179,12 +189,12 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 										<form method="get" action="like.php">
 											<input type="hidden" name="like" value="'.$row['like'].'">
 											<input type="hidden" name="idP" value="'.$row['idP'].'">
-											<button type="submit" class="btn btn-primary"><img src="img/like_on.png" width="15px" heigth="auto"></button>
+											<button type="submit" class="btn btn-primary"><img src="img/like_off.png" width="15px" heigth="auto"></button>
 										</form>
 									</td>
 									<td>'.$row['like'].'</td>
 									<td>'.$row['pub'].'</td>
-								  </tr>';
+								</tr>';
 						}
 					}catch (Exception $e) {
 						echo 'Excepción capturada: ',  $e->getMessage(), "\n";
@@ -192,23 +202,40 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					?>
 				</tbody>
 			</table>
-		</article>
+		</div>  
+		<div id="btnNuevaP">
 <!-- HDA #4:
 Insertar una nueva publicacion en el grupo principal del usuario-->
-		<article id="btnNuevaP">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearPublicacion">Crear publicación</button>
-				<?php
-				?>
-		</article>
-	</section>
-	</section>
+		</div>
+	</div>
+</div>
 
 <!-- HDA #5:
 visalizar la información del usuario que ingresó
 con los campos de Usuario, grupo principal y otros grupos.-->
+<?php
+// categoria secundarias del usuario.
+	$categoriasS=" ";
+	$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal IS null';
+    $result = $mysqli->query($query);
+    foreach ($result as $row) {
+    	 $categoriasS = $categoriasS.''.$row['nombre'].',';
+    }
+
+// categorias principal del usuario.
+    $query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal=1';
+    $result = $mysqli->query($query);
+    foreach ($result as $row) {
+        $categoriaP = $row['nombre'];
+	}
+	?>
 	<footer>
-		
+        <?php
+            echo '<p>Usuario: <b>'.$login.'</b> - Categoria principal: <b>'.$categoriaP.'</b> - Categorias secundarias: <b>'.$categoriasS.'</p>';
+        ?>
 	</footer>
+	
 	<script>
 	function reload(){
 		$(document).ready(function() {
