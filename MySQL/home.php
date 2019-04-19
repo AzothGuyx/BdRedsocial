@@ -93,7 +93,7 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-					$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP", categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
+					$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
 					WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
 					$result = $mysqli->query($query);
 					foreach ($result as $row) {
