@@ -54,17 +54,24 @@
 	foreach ($result as $row) {
 		$categoriaP = $row['principal'];
 	}
+//Actualiza la fecha de ultimo ingreso
+	$query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
+	$result = $mysqli->query($query);
+
+
 	?>
 <!-- Mostrar ultimo ingreso -->
 	<header>
 		<?php
 			echo '<h6>Hola <b>'.$login.'</b> tu ultimo ingreso fue <b>'.$ui.'</b></h6>';
+			
 		?>
 	</header>
 
 
 <!-- HDA#1:
 consulta los eventos que existe basado en # deasistentes-fecha-descripción.
+Los eventos deben ser posteriores a la fecha de ultimo ingreso.
 Permitir agendar uno de estos eventos mediante el boton asistir.
 -->
 	<section>
@@ -80,12 +87,16 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-           			 $query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id as "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id GROUP BY E.id';
+           			 $query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id';
             		$result = $mysqli->query($query);
            			 foreach ($result as $row) {
 						echo '<tr>
 								<td>
-									<button type="button" class="btn btn-primary"><?php echo "hello world";?>Asistir</button>
+									<form method="get" action="agendar.php">
+										<input type="hidden" name="idUsuario" value="'.$idUsuario.'">
+										<input type="hidden" name="idEvento" value="'.$row['idEvento'].'">
+										<button type="submit" class="btn btn-primary"><img src="img/like_on.png" width="15px" heigth="auto"></button>
+									</form>
 								</td>
 								<td>'.$row['COUNT(A.evento_id)'].'</td>
 								<td>'.$row['feevento'].'</td>
@@ -157,16 +168,25 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 				</thead>
 				<tbody>
 					<?php
+					try{
 						$query = 'SELECT L.numLikes as "like", P.dspublicacion as "pub", P.id as "idP" FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id';
-							$result = $mysqli->query($query);
+						$result = $mysqli->query($query);
 						foreach ($result as $row) {
-							echo '
-							<tr>
-								<td><button type="button" class="btn btn-primary" onclick="like.php?id='.$row['idP'].'"><img src="img/like_on" width="15px" heigh="15px"> Like</button></td>
-								<td>'.$row['like'].'</td>
-								<td>'.$row['pub'].'</td>
-							</tr>';
+							echo '<tr>
+									<td>
+										<form method="get" action="like.php">
+											<input type="hidden" name="like" value="'.$row['like'].'">
+											<input type="hidden" name="idP" value="'.$row['idP'].'">
+											<button type="submit" class="btn btn-primary"><img src="img/like_on.png" width="15px" heigth="auto"></button>
+										</form>
+									</td>
+									<td>'.$row['like'].'</td>
+									<td>'.$row['pub'].'</td>
+								  </tr>';
 						}
+					}catch (Exception $e) {
+						echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+					}
 					?>
 				</tbody>
 			</table>
