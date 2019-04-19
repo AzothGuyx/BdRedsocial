@@ -48,31 +48,19 @@
 		$ui = $row['ultimo_ingreso'];
 		$nombre = $row['nombre'];
 	}
-
-	$categoriasS='';
-
-// categoria secundarias del usuario.
-$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal IS null';
+	
+// categoria principal del usuario.
+	$query = 'SELECT principal FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\'';
 	$result = $mysqli->query($query);
 	foreach ($result as $row) {
-		$categoriasS = $categoriasS.''.$row['nombre'].',';
+		$categoriaP = $row['principal'];
 	}
-	echo ''.$query;
-
-// categorias principal del usuario.
-	$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal=1';
-	$result = $mysqli->query($query);
-	foreach ($result as $row) {
-		$categoriaP = $row['nombre'];
-	}
-
 //Actualiza la fecha de ultimo ingreso
 	$query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
 	$result = $mysqli->query($query);
 
 
 	?>
-<<<<<<< HEAD
 <!-- Mostrar ultimo ingreso -->
 	<header>
 		<?php
@@ -82,8 +70,6 @@ $query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND prin
 		<button type="button" class="btn btn-primary btn-lg btn-block" onclick= "reload()">actualizar	</button>
 	</header>
 
-=======
->>>>>>> 24c5b68073609d3e2a92036843530e004458c4e8
 
 <!-- HDA#1:
 consulta los eventos que existe basado en # deasistentes-fecha-descripción.
@@ -220,15 +206,8 @@ Insertar una nueva publicacion en el grupo principal del usuario-->
 <!-- HDA #5:
 visalizar la información del usuario que ingresó
 con los campos de Usuario, grupo principal y otros grupos.-->
-
-	
 	<footer>
-	
-		<?php
-			echo '<h6>Hola <b>'.$login.'</b> tu ultimo ingreso fue <b>'.$ui.'</b>,categoria principal:<b>'.$categoriaP.'</b><br>Categorias secundarias:<b>'.$categoriasS.'</h6>';
-			
-		?>
-	
+		
 	</footer>
 	<script>
 	function reload(){
