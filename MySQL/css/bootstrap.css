@@ -206,6 +206,8 @@ svg {
 }
 
 table {
+  width: 20%;
+  height: auto;
   border-collapse: collapse;
 }
 

@@ -4,7 +4,7 @@ body {
 	color: #222;
 }
 p {
-	margin: 0 0 2em;
+	margin: auto;
 }
 h1 {
 	margin: 0;
@@ -31,7 +31,10 @@ footer
     height:50px;
     background-color:#8abdec;
 }
-
+aside{
+	float: right;
+	margin-top: 0%;
+}
 /* button 
 ---------------------------------------------- */
 #btnNuevaP{

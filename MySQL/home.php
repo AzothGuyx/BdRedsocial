@@ -65,16 +65,15 @@
 	<header>
 		<?php
 			echo '<h6>Hola <b>'.$login.'</b> tu ultimo ingreso fue <b>'.$ui.'</b></h6>';
-			
 		?>
-		<button type="button" class="btn btn-primary btn-lg btn-block" onclick= "reload()">actualizar	</button>
+		<button type="button" class="btn btn-primary " onclick= "reload()"><img src="img/update.png" width="25px" heignt="25px"></button>
 	</header>
 
 
 <!-- HDA #1 y #2 -->
 	<div class="card">
 		<div class="card-header">
-			Featured
+			Eventos  <button type="button" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto"></button>
 		</div>
 		<div class="card-body"> 
 <!-- HDA#1:
@@ -82,7 +81,7 @@ consulta los eventos que existe basado en # deasistentes-fecha-descripción.
 Los eventos deben ser posteriores a la fecha de ultimo ingreso.
 Permitir agendar uno de estos eventos mediante el boton asistir.
 --> 
-		<div id="tablePublicacion">
+		<section id="tablePublicacion">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -113,12 +112,12 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					?>
 				</tbody>
 			</table>
-		</div>
+				</section>
 	<!-- HDA#2:
 	consulta los eventos en los que esta registrado el usuario
 	Permitir agendar uno de estos eventos mediante el boton asistir.--> 
-		<div id="btnVerA">
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#verAgenda"><img src="img/agenda.png" whidth="40px" height="40px"><h4>Revisar mi agenda</h4></button>
+		<aside>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#verAgenda"><img src="img/agenda.png" whidth="40px" height="40px"><h4>Revisar mi agenda</h4></button>
 				<!-- Modal -->
 				<div class="modal fade" id="verAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
 					aria-hidden="true">
@@ -159,17 +158,17 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					</div>
 				</div>
 			</div>
-		</div>
+		</aside	>
 	</div>
 <!-- HDA #3 y #4 -->
-<div class="card">
+<section class="card">
 	<div class="card-header">PUBLICACIONES
 	</div>
 	<div class="card-body">
 		<!-- HDA#3:
 Consultar todas las publicaciones.
 Actualizar el numero de likes de una publicacón agregandole 1.-->	
-		<div id="tablePublicacion">
+		<section id="tablePublicacion">
 			<table class="table">
 				<thead class="thead-dark">
 					<tr>
@@ -202,14 +201,14 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					?>
 				</tbody>
 			</table>
-		</div>  
-		<div id="btnNuevaP">
-<!-- HDA #4:
+		</section>  
+		<!-- HDA #4:
 Insertar una nueva publicacion en el grupo principal del usuario-->
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CrearPublicacion">Crear publicación</button>
-		</div>
+		<aside>
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#CrearPublicacion" width="70px" height="140px"><img src="img/doc.png" width="40px" height="40px">Crear publicación</button>
+		</aside>
 	</div>
-</div>
+</section>
 
 <!-- HDA #5:
 visalizar la información del usuario que ingresó
