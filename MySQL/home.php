@@ -93,7 +93,8 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 				</thead>
 				<tbody>
 					<?php
-					$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
+					$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP", categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
+					WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
 					$result = $mysqli->query($query);
 					foreach ($result as $row) {
 						echo '<tr>
