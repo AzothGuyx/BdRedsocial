@@ -11,7 +11,6 @@
 
 </head>
 <body>
-	<H1 class="mi_color">MySQL o MariaDB-Home</H1>
 <!--Cosas bases-->
 	<?PHP
 /*Se recuperan los argumentos*/
@@ -70,18 +69,24 @@
 
 	?>
 <!-- Mostrar ultimo ingreso -->
+
+	<div class="jumbotron jumbotron-fluid">
+ 		<div class="container">
+    		<h1 class="display-4"><img src="img/bd.png" width="60px" height="60px">  MySQL o MariaDB</h1>
+    		<p class="lead">Es un sistema de gestión de base de datos relacional (RDBMS) de código abierto, basado en lenguaje de consulta estructurado (SQL).</p>
+	  </div>
+	</div>
 	<header>
 		<?php
-			echo '<h6>Hola <b>'.$login.'</b> tu ultimo ingreso fue <b>'.$ui.'</b></h6>';
+			echo '<h6><img src="img/user.png" width="35px" height="35px" class="img-thumbnail">  <b>'.$login.'</b> ultimo ingreso fue <b>'.$ui.'</b></h6>';
 		?>
-		<span  type="button" id="botonFixed" class="btn btn-primary " onclick= "reload()"><img src="img/update.png" width="25px" heignt="25px"></span>
 	</header>
-
+	<span  type="button" id="botonFixed" class="btn btn-primary " onclick= "reload()"><img src="img/update.png" width="50px" height="50px"></span>
 
 <!-- HDA #1 y #2 -->
 	<div class="card">
 		<div class="card-header">
-	<b>EVENTOS:</b>
+		<b>EVENTOS:</b>
 		</div>
 		<div class="card-body"> 
 <!-- HDA#1:
@@ -89,8 +94,7 @@ consulta los eventos que existe basado en # deasistentes-fecha-descripción.
 Los eventos deben ser posteriores a la fecha de ultimo ingreso.
 Permitir agendar uno de estos eventos mediante el boton asistir.
 --> 
-		<section id="tablePublicacion">
-		<table>
+			<table id="tableM">
 				<tr>
 					<td>
 						<form name="q1" action="home.php" method="get">
@@ -110,7 +114,7 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					</td>
 				</tr>
 			</table>
-			<table class="table">
+			<table id="tableM" class="table">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Asistir al evento</th>
@@ -144,13 +148,12 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					?>
 				</tbody>
 			</table>
-		</section>
 		<hr>
 	<!-- HDA#2:
 	consulta los eventos en los que esta registrado el usuario
 	Permitir agendar uno de estos eventos mediante el boton asistir.--> 
-		<aside>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#verAgenda"><img src="img/agenda.png" whidth="40px" height="40px"><h4>Revisar mi agenda</h4></button>
+		<div>
+			<button type="button" id="btnCentral" class="btn btn-success" data-toggle="modal" data-target="#verAgenda"><img src="img/agenda.png" whidth="40px" height="40px"><h4>Revisar mi agenda</h4></button>
 				<!-- Modal -->
 				<div class="modal fade" id="verAgenda" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle"
 					aria-hidden="true">
@@ -191,18 +194,36 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 					</div>
 				</div>
 			</div>
-		</aside	>
+		</div>
 	</div>
 <!-- HDA #3 y #4 -->
-<section class="card">
-	<div class="card-header">PUBLICACIONES
-	</div>
-	<div class="card-body">
-		<!-- HDA#3:
+	<div class="card">
+		<div class="card-header">PUBLICACIONES</div>
+		<div class="card-body">
+<!-- HDA#3:
 Consultar todas las publicaciones.
-Actualizar el numero de likes de una publicacón agregandole 1.-->	
-		<section id="tablePublicacion">
-			<table class="table">
+Actualizar el numero de likes de una publicacón agregandole 1.-->
+			<table id="tableM">
+				<tr>
+					<td>
+						<form name="q1" action="home.php" method="get">
+							<!-- filtro_fecha con valor 1  indica que debe buscar todo -->
+							<input type="hidden" name="filtro_fecha" value="1" >
+							<input type="hidden" name="login" value="<?php echo $login;?>" >
+							<button type="submit" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto">Sin filtro</button>
+						</form>
+					</td>
+					<td>
+						<form name="q0" action="home.php" method="get">
+							<!-- filtro_fecha con valor 2 indica que debe buscar solo sobre la fecha de ultimo ingreso -->
+							<input type="hidden" name="filtro_fecha" value="2" >
+							<input type="hidden" name="login" value="<?php echo $login;?>" >
+							<button type="submit" class="btn btn-warning"><img src="img/filtro_on.png" width="15px" height="auto">Con filtro</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+			<table id="tableM" class="table">
 				<thead class="thead-dark">
 					<tr>
 						<th scope="col">Like</th>
@@ -212,11 +233,14 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 				</thead>
 				<tbody>
 					<?php
-					try{
+					if ($filtro_fecha == 1){
 						$query = 'SELECT L.numLikes as "like", P.dspublicacion as "pub", P.id as "idP" FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id';
-						$result = $mysqli->query($query);
-						foreach ($result as $row) {
-							echo '<tr>
+					}else{
+						$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
+					}
+					$result = $mysqli->query($query);
+					foreach ($result as $row) {
+						echo '<tr>
 									<td>
 										<form method="get" action="like.php">
 											<input type="hidden" name="like" value="'.$row['like'].'">
@@ -227,22 +251,32 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 									<td>'.$row['like'].'</td>
 									<td>'.$row['pub'].'</td>
 								</tr>';
-						}
-					}catch (Exception $e) {
-						echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 					}
 					?>
 				</tbody>
 			</table>
-		</section> 
-		<hr>
-		<!-- HDA #4:
-Insertar una nueva publicacion en el grupo principal del usuario-->
-		<aside>
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#CrearPublicacion" width="70px" height="140px"><img src="img/doc.png" width="40px" height="40px">Crear publicación</button>
-		</aside>
+<!-- HDA #4:
+qInsertar una nueva publicacion en el grupo principal del usuario-->
+			<div>
+				<p>
+					<button id="btnCentral" class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+						<img src="img/doc.png" width="40px" height="40px"><h4>Crear publicación<h4>
+					</button>
+				</p>
+				<div class="collapse" id="collapseExample">
+					<div class="card card-body">
+						<form>
+							<div class="form-group">
+								<label for="exampleFormControlTextarea1">Descripción de la publicación</label>
+    							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-</section>
 
 <!-- HDA #5:
 visalizar la información del usuario que ingresó
@@ -253,7 +287,7 @@ con los campos de Usuario, grupo principal y otros grupos.-->
 	$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal IS null';
     $result = $mysqli->query($query);
     foreach ($result as $row) {
-    	 $categoriasS = $categoriasS.''.$row['nombre'].',';
+    	 $categoriasS = $categoriasS.''.$row['nombre'].' ';
     }
 
 // categorias principal del usuario.
@@ -265,7 +299,7 @@ con los campos de Usuario, grupo principal y otros grupos.-->
 	?>
 	<footer>
         <?php
-            echo '<p>Usuario: <b>'.$login.'</b> - Categoria principal: <b>'.$categoriaP.'</b> - Categorias secundarias: <b>'.$categoriasS.'</p>';
+            echo '<p>Usuario: <b>'.$login.'</b> - Categoria principal: <b>'.$categoriaP.'</b> - Categorias secundarias: <b>'.$categoriasS.'.</p>';
         ?>
 	</footer>
 	
