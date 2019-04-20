@@ -49,10 +49,11 @@
 	}
 	
 // categoria principal del usuario.
-	$query = 'SELECT principal FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\'';
+
+	$query = 'SELECT id FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\' AND principal=1';
 	$result = $mysqli->query($query);
 	foreach ($result as $row) {
-		$categoriaP = $row['principal'];
+		$categoriaP = $row['id'];
 	}
 //Actualiza la fecha de ultimo ingreso
 	$query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
@@ -66,7 +67,21 @@
 		echo "<H3>Falta el argumento filtro_fecha</H3>";
 		exit(0);
 	}
-
+	if( isset( $_GET["publicacion"] ) ){
+		$publicacion = htmlspecialchars($_GET["publicacion"]);
+	} else {
+		echo "<H3>Falta el argumento publicacion#</H3>";
+		exit(0);
+	}
+	if( isset( $_GET["dspub"] ) ){
+		$dspub="";
+		$dspub = htmlspecialchars($_GET["dspub"]);
+	} else {
+		echo "<H3>Falta el argumento descripcion</H3>";
+		exit(0);
+	}
+	
+	
 	?>
 <!-- Mostrar ultimo ingreso -->
 
@@ -100,6 +115,8 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 						<form name="q1" action="home.php" method="get">
 							<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
 							<input type="hidden" name="filtro_fecha" value="0" >
+							<input type="hidden" name="dspub" value="" >
+							<input type="hidden" name="publicacion" value="0" >							
 							<input type="hidden" name="login" value="<?php echo $login;?>" >
 							<button type="submit" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto">Sin filtro</button>
 						</form>
@@ -108,6 +125,8 @@ Permitir agendar uno de estos eventos mediante el boton asistir.
 						<form name="q0" action="home.php" method="get">
 							<!-- filtro_fecha con valor -1 indica que debe buscar solo sobre la fecha de ultimo ingreso -->
 							<input type="hidden" name="filtro_fecha" value="-1" >
+							<input type="hidden" name="publicacion" value="0" >
+							<input type="hidden" name="dspub" value="" >
 							<input type="hidden" name="login" value="<?php echo $login;?>" >
 							<button type="submit" class="btn btn-warning"><img src="img/filtro_on.png" width="15px" height="auto">Con filtro</button>
 						</form>
@@ -208,7 +227,9 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					<td>
 						<form name="q1" action="home.php" method="get">
 							<!-- filtro_fecha con valor 1  indica que debe buscar todo -->
+							<input type="hidden" name="dspub" value="" >
 							<input type="hidden" name="filtro_fecha" value="1" >
+							<input type="hidden" name="publicacion" value="0" >
 							<input type="hidden" name="login" value="<?php echo $login;?>" >
 							<button type="submit" class="btn btn-warning"><img src="img/filtro.png" width="15px" height="auto">Sin filtro</button>
 						</form>
@@ -216,7 +237,9 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					<td>
 						<form name="q0" action="home.php" method="get">
 							<!-- filtro_fecha con valor 2 indica que debe buscar solo sobre la fecha de ultimo ingreso -->
-							<input type="hidden" name="filtro_fecha" value="2" >
+							<input type="hidden" name="filtro_fecha" value="0">
+							<input type="hidden" name="dspub" value="" >
+							<input type="hidden" name="publicacion" value="0" >
 							<input type="hidden" name="login" value="<?php echo $login;?>" >
 							<button type="submit" class="btn btn-warning"><img src="img/filtro_on.png" width="15px" height="auto">Con filtro</button>
 						</form>
@@ -265,13 +288,38 @@ qInsertar una nueva publicacion en el grupo principal del usuario-->
 				</p>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<form>
-							<div class="form-group">
-								<label for="exampleFormControlTextarea1">Descripción de la publicación</label>
-    							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
+						<form name="q3" action="home.php" method="get">
+							<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
+							<input type="hidden" name="filtro_fecha" value="-1" >
+							<input type="hidden" name="publicacion" value="0" >
+							<input type="hidden" name="login" value="<?php echo $login;?>">
+							<input name="dspub">
+							<button type="submit" class="btn btn-warning">Crear publicacion</button>
 						</form>
+						<?php
+							try{
+								if ($publicacion == 0 and !$dspub==""){
+							
+									echo "Descripcion: ".$dspub."<br>";
+									echo "usuario: ".$idUsuario."<br>";
+									echo "Categoria: ".$categoriaP."<br>";
+									$query = 'INSERT INTO publicacion(dspublicacion, usuario_id, categoria_id) VALUES ('.'\''.$dspub.'\','.'\''.$idUsuario.'\','.'\''.$categoriaP.'\')';
+									$result = $mysqli->query($query);
+									echo '<form name="q3" action="home.php" method="get">
+											  <input type="hidden" name="login" value="'.$login.'" >
+											  <input type="hidden" name="dspub" value="" >
+											  <input type="hidden" name="filtro_fecha" value="-1" >
+											  <input type="hidden" name="publicacion" value="0" >
+											<button type="submit" class="btn btn-warning">Confirmar</button>
+											</form>';
+								}
+								
+
+								$dspub="";	
+							}catch (Exception $e) {
+								echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+							}
+						?>
 					</div>
 				</div>
 			</div>
