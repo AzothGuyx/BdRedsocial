@@ -16,6 +16,10 @@
 		$categoriaP = $row['principal'];
 	}
 
+//Obtencion de categorias secundarias
+	$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.$idUsuario.' AND principal IS null';
+
+
 //Actualizacion de ultimo ingreso del usuario
 
         $query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
@@ -25,10 +29,16 @@
 //Eventos filtrados
          $query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
 
+//Eventos sin filtracion
+$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id  GROUP BY E.id ORDER BY e.feevento ASC';
+
 //Publicaciones filtradas respecto a las categorias del usuario
 
         $query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id
                 WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
+
+//publicaciones sin filitracion
+$query = 'SELECT L.numLikes as "like", P.dspublicacion as "pub", P.id as "idP" FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id';
 
 //Actualizacion de Likes de una Publicaciones
 	$like = htmlspecialchars($_GET['like']);
@@ -39,7 +49,6 @@
         $result = $mysqli->query($query);
 
 //Actualizacion de asistencias de los Eventos
-
 	$query = 'SELECT E.dsevento,E.feevento,COUNT(A.evento_id), E.id AS "idEvento" FROM evento E LEFT JOIN  agenda A ON E.id = A.evento_id WHERE E.feevento > '.'\''.$ui.'\' GROUP BY E.id ORDER BY e.feevento ASC';
 	$result = $mysqli->query($query);
 

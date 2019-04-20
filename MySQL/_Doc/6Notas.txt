@@ -1,0 +1,21 @@
+//Se tubo que hacer un trigger affter insert a la tabla publicación
+
+
+DELIMITER $$
+
+USE `redes_sociales`$$
+
+DROP TRIGGER /*!50032 IF EXISTS */ `AI_likeAutamatic`$$
+
+CREATE
+    /*!50017 DEFINER = 'root'@'localhost' */
+    TRIGGER `AI_likeAutamatic` AFTER INSERT ON `publicacion` 
+    FOR EACH ROW BEGIN
+	
+	/* Encontramos la publicacion de se ha credo*/
+   INSERT INTO likes(numLikes, publicacion_id)
+   VALUE (0, new.id);
+   END;
+$$
+
+DELIMITER ;

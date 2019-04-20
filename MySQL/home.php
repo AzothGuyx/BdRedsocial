@@ -288,7 +288,7 @@ qInsertar una nueva publicacion en el grupo principal del usuario-->
 				</p>
 				<div class="collapse" id="collapseExample">
 					<div class="card card-body">
-						<form name="q3" action="home.php" method="get">
+						<form name="" action="home.php" method="get">
 							<!-- filtro_fecha con valor 0 indica que debe buscar todo -->
 							<input type="hidden" name="filtro_fecha" value="-1" >
 							<input type="hidden" name="publicacion" value="0" >

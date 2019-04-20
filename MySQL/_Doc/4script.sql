@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`usuario` (
   `ultimo_ingreso` DATETIME NULL,
   `clave` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`evento` (
   `dsevento` VARCHAR(500) NOT NULL,
   `feevento` DATETIME NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`agenda` (
     REFERENCES `redes_sociales`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`categoria` (
     REFERENCES `redes_sociales`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`publicacion` (
     REFERENCES `redes_sociales`.`categoria` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `redes_sociales`.`likes` (
     REFERENCES `redes_sociales`.`publicacion` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = INNODB;
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
