@@ -16,8 +16,8 @@
 
         // Conexion a la base de batos
         $cluster = Cassandra::cluster()
-        ->withContactPoints('127.0.0.1')
-        ->build();
+            ->withContactPoints('127.0.0.1')
+            ->build();
         $sesion = $cluster->connect("redsocial");
 
         $query = 'SELECT publicaciones_id from publicaciones';

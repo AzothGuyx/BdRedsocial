@@ -16,7 +16,7 @@
 	//var_dump($_SERVER);
 	//exit(0);
 	/*Leer el URL del servidor*/
-	$URL_HOME = "";
+	$URL_HOME = "http://localhost/BdRedsocial/";
 	/*Si lo anterior NO FUNCIONA Usted debe cambiar esto segun su configuracion del proyecto (ubicacion dentro del wampp y el puerto del pache*/
 	//$URL_HOME = 'http://localhost/Bd2_NoSQL2019_1/';
 	//$URL_HOME = 'http://localhost:9090/Bd2_NoSQL2019_1/';
@@ -233,20 +233,22 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 	/*Ciclo*/
 	for( $i= 1 ; $i <= $registros ; $i++ ) {	
 		/*Genera los valores de forma aleatoria*/
-		$usuario_id = rand ( 1 , 15 );
-		$usuario = $listaUsuarios[$usuario_id];
+		$usuario_num = rand ( 1 , 15 );
+		$usuario = $listaUsuarios[$usuario_num];
 		
 		$tiempo = $tiempo + rand ( 0 , 1 );
 		/*Arma la cadena del llamado*/
 		$url = 		$URL_HOME .
 					$bd . '/insertar.php'.
 					'?tiempo='. $tiempo .					
-					'&usuario_id='. htmlentities($usuario_id) .
-					'&usuario_login='. htmlentities($usuario["login"]).
-					'&usuario_nombre='. htmlentities($usuario["nombre"]).
-					'&categoria_id='. htmlentities($usuario["categoria_principal"]).
-					'&categoria_nombre='. htmlentities($listaCategorias[$usuario["categoria_principal"]]).
-					'&dspublicacion='. htmlentities($listaMariaTeniaUnCorderito[ rand ( 1 , 48 ) ]);
+					'&usuario_num='. htmlentities($usuario_num) .
+					'&nickname='. htmlentities($usuario["nickname"]).
+					'&usuarios_nombre='. htmlentities($usuario["usuarios_nombre"]).
+					'&categorias_nombre='. htmlentities($usuario["categorias_nombre"]).
+					//'&categoria_nombre='. htmlentities($listaCategorias[$usuario["categoria_principal"]]).
+					'&dspubli='. htmlentities($listaMariaTeniaUnCorderito[ rand ( 1 , 48 ) ]);
+		
+
 		if( $esUnTest == 'S' ){
 			header('Location: '.$url);
 			die();
@@ -255,13 +257,16 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$contents = "";
 		try{
 			//suppress the warning by putting an error control operator (i.e. @) 
-			$contents = @file_get_contents( $url );
+			$contents = @file_get_contents($url);
+			//echo "Se supone que todo esta bien";
 		}catch (Exception $e) {
 			$contents = $e->getMessage();
+			//echo "Algo malo paso";
 		}
 		/*Se imprime la fila de la tabla*/
 		echo "<tr><td>$i</td><td>".$url . "</td><td>" . $contents . "</td></tr>\n";
 	}
+	
 ?>
 </table>
 </div>
@@ -269,6 +274,7 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 $time_end = microtime(true); // Tiempo Final
 $time = $time_end - $time_start; // Tiempo Consumido
 echo "\n</br></br><h2>Tiempo de ejecución ".$time." segundos</h2>";
+//echo $url;
 ?>
 </body>
 </html>
