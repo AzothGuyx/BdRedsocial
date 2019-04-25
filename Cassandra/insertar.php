@@ -19,7 +19,7 @@ $dspublicacion		= htmlspecialchars($_GET["dspublicacion"]);
 
 					
 /*Validación de argumentos - */
-/*
+
 echo 'tiempo='. 	$tiempo .'</br>';
 echo 'usuario_id='. 		$usuario_id .'</br>';
 echo 'usuario_login='. 		$usuario_login .'</br>';
@@ -27,27 +27,27 @@ echo 'usuario_nombre='. 	$usuario_nombre.'</br>';
 echo 'categoria_id='. 	$categoria_id.'</br>';
 echo 'categoria_nombre='. 	$categoria_nombre.'</br>';
 echo 'dspublicacion='. 	$dspublicacion.'</br>';
-*/
+
 
 
 // Si es cassandra
-//$tiempo = $tiempo*1000;
+$tiempo = $tiempo*1000;
 
 
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
-/*
+
 // Documentación en https://datastax.github.io/php-driver/features
 $cluster   = Cassandra::cluster()
                ->withContactPoints('127.0.0.1')
                ->build();
 // Seleccionar la base de datos
-$session   = $cluster->connect("CAMBIAR_ESTE_NOMBRE_CON_EL_NOMBRE_DEL_KEY_SPACE");
-*/
+$session   = $cluster->connect("redsocial");
+
 
 // Documentación en https://datastax.github.io/php-driver/features/#executing-queries
 // Documentación en https://datastax.github.io/php-driver/features/simple_statements/
 /* ==--> Se arma el Batch para insertar en tablas. Note que hay dos ejemplos de insert*/
-/*
+
 $batch = new Cassandra\BatchStatement(Cassandra::BATCH_UNLOGGED);
 	// Ejemplo de tabla Qn con las columnas x,y,z,w. Y se usan las variables $v_x, $v_y, $v_z, $v_w. Note que las columnas x, w son tipo texto
 	$batch -> add(
@@ -58,20 +58,20 @@ $batch = new Cassandra\BatchStatement(Cassandra::BATCH_UNLOGGED);
 		"INSERT INTO Qm(a,b,x) VALUES ('${v_a}', ${v_b}, ${v_x})"
 	);
 $session->execute($batch);
-*/
+
 
 /* ==--> Se arma el Batch para actualizar en tablas*/
-/*
+
 $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 	// Ejemplo de actualizar la tabla Qt se incrementa la columna contador
 	$batchCounter -> add(
 		"UPDATE Qt SET contador = contador + 1 WHERE x='${v_x}' AND y = ${v_y}"
 	);
 $session->execute($batchCounter);
-*/
+
 
 /* ==--> Cerrar Conexion*/
-/*$session->close();*/
+$session->close();
 
 /*retornar el texto con resultado*/
 echo "OK";
