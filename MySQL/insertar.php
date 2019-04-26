@@ -41,7 +41,8 @@ if ($mysqli->connect_errno) {
 /* ==--> Se arma el Insert*/
 // Documentación https://www.php.net/manual/es/mysqli-stmt.bind-param.php
 /* Sentencia preparada, etapa 1: preparación */
-$stmt = $mysqli->prepare("INSERT INTO CountryLanguage VALUES (?, ?, ?, ?)");
+$stmt = $mysqli->prepare("INSERT INTO publicacio (id, dspublicacion, usuario_id, categoria_id)
+VALUES (,"",,)");
 
 /* Sentencia preparada, etapa 2: Enlace*/
 /*
