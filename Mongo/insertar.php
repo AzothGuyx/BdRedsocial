@@ -17,15 +17,12 @@ $categoria_nombre	= htmlspecialchars($_GET["categorias_nombre"]);
 $dspublicacion			= htmlspecialchars($_GET["dspubli"]);
 					
 /*Validación de argumentos - */
-/*
+
 echo 'tiempo='. 	$tiempo .'</br>';
-echo 'usuario_id='. 		$usuario_id .'</br>';
-echo 'usuario_login='. 		$usuario_login .'</br>';
-echo 'usuario_nombre='. 	$usuario_nombre.'</br>';
-echo 'categoria_id='. 	$categoria_id.'</br>';
+echo 'usuario_login='. 		$nickname .'</br>';
 echo 'categoria_nombre='. 	$categoria_nombre.'</br>';
 echo 'dspublicacion='. 	$dspublicacion.'</br>';
-*/
+
 
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
 // Documentación https://www.php.net/manual/es/class.mongodb-driver-manager.php
@@ -60,5 +57,5 @@ $id_documento = $bulk->insert(['dspublicacion' => $dspublicacion,'likes' => 0,'c
 $result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk);
 
 /*retornar el texto con resultado*/
-echo "id: ".$id_documento.'<br>'."publicacion:".$dspublicacion.'<br>'."nombre: ".$categoria_nombre;
+echo 'ok';
 ?>
