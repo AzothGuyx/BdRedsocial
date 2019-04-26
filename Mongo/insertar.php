@@ -10,24 +10,19 @@
 
 /*Se recuperan los argumentos*/
 $tiempo				= htmlspecialchars($_GET["tiempo"]);
-$usuario_id			= htmlspecialchars($_GET["usuario_id"]);
-$usuario_login		= htmlspecialchars($_GET["usuario_login"]);
-$usuario_nombre		= htmlspecialchars($_GET["usuario_nombre"]);
-$categoria_id		= htmlspecialchars($_GET["categoria_id"]);
-$categoria_nombre	= htmlspecialchars($_GET["categoria_nombre"]);
-$dspublicacion		= htmlspecialchars($_GET["dspublicacion"]);
-
+$usuario_num		= htmlspecialchars($_GET["usuario_num"]);
+$nickname			= htmlspecialchars($_GET["nickname"]);
+$usuarios_nombre	= htmlspecialchars($_GET["usuarios_nombre"]);
+$categoria_nombre	= htmlspecialchars($_GET["categorias_nombre"]);
+$dspublicacion			= htmlspecialchars($_GET["dspubli"]);
 					
 /*Validación de argumentos - */
-/*
+
 echo 'tiempo='. 	$tiempo .'</br>';
-echo 'usuario_id='. 		$usuario_id .'</br>';
-echo 'usuario_login='. 		$usuario_login .'</br>';
-echo 'usuario_nombre='. 	$usuario_nombre.'</br>';
-echo 'categoria_id='. 	$categoria_id.'</br>';
+echo 'usuario_login='. 		$nickname .'</br>';
 echo 'categoria_nombre='. 	$categoria_nombre.'</br>';
 echo 'dspublicacion='. 	$dspublicacion.'</br>';
-*/
+
 
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
 // Documentación https://www.php.net/manual/es/class.mongodb-driver-manager.php
@@ -62,5 +57,5 @@ $id_documento = $bulk->insert(['dspublicacion' => $dspublicacion,'likes' => 0,'c
 $result = $manager->executeBulkWrite('RedSocial.Publicaciones', $bulk);
 
 /*retornar el texto con resultado*/
-echo "OK";
+echo 'ok';
 ?>

@@ -169,7 +169,7 @@ try {
 		break;
 	}
 	//se acutaliza la fecha de ultimo ingreso
-	$bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultingreso' => $fecha_ultimo_ingreso]], ['multi' => false, 'upsert' => false]);
+	$bulk->update(['nickname' =>['$eq' => $login]], ['$set' => ['ultingreso' => time()]], ['multi' => false, 'upsert' => false]);
 	$writeConcern = new MongoDB\Driver\WriteConcern(MongoDB\Driver\WriteConcern::MAJORITY, 100);
 	$result = $manager->executeBulkWrite('RedSocial.Usuarios', $bulk, $writeConcern);
 	
