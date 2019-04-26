@@ -237,17 +237,41 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$usuario = $listaUsuarios[$usuario_num];
 		
 		$tiempo = $tiempo + rand ( 0 , 1 );
+
+		$pub =  htmlentities($listaMariaTeniaUnCorderito[ rand ( 1 , 48 ) ]);
+		//$pub = str_replace(" ", "+", $pub);
 		/*Arma la cadena del llamado*/
 		$url = 		$URL_HOME .
 					$bd . '/insertar.php'.
 					'?tiempo='. $tiempo .					
-					'&usuario_num='. htmlentities($usuario_num) .
-					'&nickname='. htmlentities($usuario["nickname"]).
-					'&usuarios_nombre='. htmlentities($usuario["usuarios_nombre"]).
-					'&categorias_nombre='. htmlentities($usuario["categorias_nombre"]).
-					//'&categoria_nombre='. htmlentities($listaCategorias[$usuario["categoria_principal"]]).
-					'&dspubli='. htmlentities($listaMariaTeniaUnCorderito[ rand ( 1 , 48 ) ]);
+					'&usuario_num='. ($usuario_num) .
+					'&nickname='. ($usuario["nickname"]).
+					'&usuarios_nombre='. ($usuario["usuarios_nombre"]).
+					'&categorias_nombre='. ($usuario["categorias_nombre"]).
+					//'&categoria_nombre='. ($listaCategorias[$usuario["categoria_principal"]]).
+					'&dspubli='. $pub;
 		
+		$getdata = http_build_query(
+			array(
+				'tiempo' => $tiempo,
+				'usuario_num' => $usuario_num,
+				'nickname'=>$usuario["nickname"],
+				'usuarios_nombre'=>$usuario["usuarios_nombre"],
+				'categorias_nombre'=>$usuario["categorias_nombre"],
+				'dspubli'=> $pub
+				)
+			);
+			//var_dump( $getdata);
+			//exit(0);
+		$opts = array('http' =>
+				array(
+					'method'  => 'GET',
+					'content' => $getdata,
+					'header' => 'Content-Type: application/x-www-form-urlencoded'
+				)
+			);
+						
+						$context  = stream_context_create($opts);
 
 		if( $esUnTest == 'S' ){
 			header('Location: '.$url);
@@ -257,7 +281,8 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 		$contents = "";
 		try{
 			//suppress the warning by putting an error control operator (i.e. @) 
-			$contents = @file_get_contents($url);
+			$contents = file_get_contents($URL_HOME .
+						$bd . '/insertar.php?'.$getdata , false, $context);
 			//echo "Se supone que todo esta bien";
 		}catch (Exception $e) {
 			$contents = $e->getMessage();
