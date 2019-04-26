@@ -22,11 +22,11 @@ $dspubli			= htmlspecialchars($_GET["dspubli"]);
 
 echo 'tiempo='. 			$tiempo .'</br>';
 echo 'usuario_num='. 		$usuario_num .'</br>';
-echo 'nickname='. 		$nickname .'</br>';
+echo 'nickname='. 			$nickname .'</br>';
 echo 'usuarios_nombre='. 	$usuarios_nombre.'</br>';
 //echo 'categoria_id='. 	$categoria_id.'</br>';
 echo 'categorias_nombre='. 	$categorias_nombre.'</br>';
-echo 'dspubli='. 		$dspubli.'</br>';
+echo 'dspubli='. 			$dspubli.'</br>';
 
 
 
@@ -78,7 +78,6 @@ $batchCounter = new Cassandra\BatchStatement(Cassandra::BATCH_COUNTER);
 		'UPDATE publicaciones set likes = likes + 0 where publicaciones_id = '.$cont.' and categorias_nombre = '.'\''.$categorias_nombre.'\' and dspubli = '.'\''.$dspubli.'\''
 	);
 $session->execute($batchCounter);
-
 
 /* ==--> Cerrar Conexion*/
 $session->close();

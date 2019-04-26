@@ -264,7 +264,11 @@ $time_start = microtime(true); // Tiempo Inicial Proceso
 			//echo "Algo malo paso";
 		}
 		/*Se imprime la fila de la tabla*/
-		echo "<tr><td>$i</td><td>".$url . "</td><td>" . $contents . "</td></tr>\n";
+		echo 	"<tr>
+					<td>$i</td>
+					<td>".$url."</td>
+					<td>".$contents."</td>
+				</tr>\n";
 	}
 	
 ?>
