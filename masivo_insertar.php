@@ -16,9 +16,9 @@
 	//var_dump($_SERVER);
 	//exit(0);
 	/*Leer el URL del servidor*/
-	//$URL_HOME = "http://localhost/BdRedsocial/";
+	$URL_HOME = "http://localhost/BdRedsocial/";
 	/*Si lo anterior NO FUNCIONA Usted debe cambiar esto segun su configuracion del proyecto (ubicacion dentro del wampp y el puerto del pache*/
-	$URL_HOME = 'http://localhost/Bd2_NoSQL2019_1/';
+	//$URL_HOME = 'http://localhost/Bd2_NoSQL2019_1/';
 	//$URL_HOME = 'http://localhost:9090/Bd2_NoSQL2019_1/';
 
 	/*Se recuperan los argumentos*/

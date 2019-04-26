@@ -14,7 +14,7 @@ $usuario_num		= htmlspecialchars($_GET["usuario_num"]);
 $nickname			= htmlspecialchars($_GET["nickname"]);
 $usuarios_nombre	= htmlspecialchars($_GET["usuarios_nombre"]);
 $categoria_nombre	= htmlspecialchars($_GET["categorias_nombre"]);
-$dspublicacion			= htmlspecialchars($_GET["dspubli"]);
+$dspublicacion		= htmlspecialchars($_GET["dspubli"]);
 					
 /*Validación de argumentos - */
 
