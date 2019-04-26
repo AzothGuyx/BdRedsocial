@@ -1,2 +1,10 @@
 1. Los test en las bases de datos se ejecutaban en forma exitosa, pero al realizar las inserciones masivas, se 
 crean los datos correctamente, pero no se logra invocar el archivo insertar.php de los tres modulos.
+
+2. Es muy tedioso trabajar con casandra ya que es muy complicado y para modelar en casandra practicamente 
+hay que desaprender lo que ya sabiamos de bases de datos, aun asi lo propuesta es interesante
+
+3.Apesar de que tuvieramos que  aprender como hacer consultas y modelar en mongo, hay que decir que es sencillo trabajarlo ya que cuenta con buena documentacion 
+y con la practica se hace mas amigable que casandra
+
+4.Obtuvimos una nueva perspectiva acerca de las bases de datos NO SQL.
