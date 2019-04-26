@@ -50,15 +50,15 @@
     "nasistentes": 0
     }
 //Publicaciones
-    {"dspublicacion":"Hola Mundo","likes":{"$numberInt":"0"},"catprincipal":"ingenierias","publicaciones_id":{"$numberInt":"1"}}
-    {"dspublicacion":"Me siento mal","likes":{"$numberInt":"4"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"2"}}
-    {"dspublicacion":"LOl","likes":{"$numberInt":"0"},"catprincipal":"sistemas","publicaciones_id":{"$numberInt":"3"}}
-    {"dspublicacion":"Nani","likes":{"$numberInt":"0"},"catprincipal":"telecomunicaciones","publicaciones_id":{"$numberInt":"4"}}
-    {"dspublicacion":"Hello","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"5"}}
-    {"dspublicacion":"Holis","likes":{"$numberInt":"0"},"catprincipal":"finanzas","publicaciones_id":{"$numberInt":"6"}}
-    {"dspublicacion":"eooo","likes":{"$numberInt":"1"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"7"}}
-    {"dspublicacion":"que se dice :v","likes":{"$numberInt":"1"},"catprincipal":"derecho","publicaciones_id":{"$numberInt":"8"}}
-    {"dspublicacion":"hello :v","likes":{"$numberInt":"2"},"catprincipal":"udem","publicaciones_id":{"$numberInt":"9"}}
+    {"dspublicacion":"Hola Mundo","likes":0,"catprincipal":"ingenierias","publicaciones_id":1}
+    {"dspublicacion":"Me siento mal","likes":4,"catprincipal":"udem","publicaciones_id":2}
+    {"dspublicacion":"LOl","likes":0,"catprincipal":"sistemas","publicaciones_id":3}
+    {"dspublicacion":"Nani","likes":0,"catprincipal":"telecomunicaciones","publicaciones_id":4}
+    {"dspublicacion":"Hello","likes":1,"catprincipal":"derecho","publicaciones_id":5}
+    {"dspublicacion":"Holis","likes":0,"catprincipal":"finanzas","publicaciones_id":6}
+    {"dspublicacion":"eooo","likes":1,"catprincipal":"udem","publicaciones_id":7}
+    {"dspublicacion":"que se dice :v","likes":1,"catprincipal":"derecho","publicaciones_id":8}
+    {"dspublicacion":"hello :v","likes":2,"catprincipal":"udem","publicaciones_id":9}
 
 //Usuarios
     {"nickname":"stephanie","usuarios_nombre":"STEPHANIE ABAD","ultingreso":1553615508,"catprincipal":"udem","categorias_nombre":["ingenierias","sistemas"]}
