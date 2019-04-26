@@ -1,4 +1,4 @@
-/*Insercion de usuarios mysql*/
+﻿/*Insercion de usuarios mysql*/
 
 INSERT INTO usuario(`id`,`nombre`,`login`,`ultimo_ingreso`) VALUES (1,'STEPHANIE ABAD','stephanie','2019-03-26 11:21:59');
 INSERT INTO usuario(`id`,`nombre`,`login`,`ultimo_ingreso`) VALUES (2,'JUAN DAVID ABAD DIAZ', 'juand', '2019-03-26 9:21:59');
@@ -9,12 +9,12 @@ INSERT INTO usuario(`id`,`nombre`,`login`,`ultimo_ingreso`) VALUES (6,'JUAN FERN
 
 /*Insercion de categorias mysql*/
 
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de ciencias basicoas',1,5);
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de ingenierias',1,4);
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de comunicaciones',1,6);
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de ciencias economicas y administrativas',1,3);
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de derecho',1,2);
-INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Facultad de ciencias sociales y humanas',1,1);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('udem',1,5);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('ingenierias',1,4);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('sistemas',1,6);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('telecomunicaciones',1,3);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('derecho',1,2);
+INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('finanzas',1,1);
 INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Computación Científica',NULL,5);
 INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Ingenieria de sistemas',NULL,4);
 INSERT INTO categoria(`nombre`,`principal`,`usuario_id`) VALUES ('Comuncacion audiovisual',NULL,6);
