@@ -1,0 +1,2 @@
+1. Los test en las bases de datos se ejecutaban en forma exitosa, pero al realizar las inserciones masivas, se 
+crean los datos correctamente, pero no se logra invocar el archivo insertar.php de los tres modulos.
