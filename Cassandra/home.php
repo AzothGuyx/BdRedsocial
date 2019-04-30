@@ -31,6 +31,7 @@
 <?PHP
 /*Se recuperan los argumentos*/
 // Usuario que se logeo
+$time_start= microtime(true);
 if( isset( $_GET["login"] ) ){
 	$login = htmlspecialchars($_GET["login"]);
 } else {
@@ -196,7 +197,9 @@ foreach($result as $row){
 		}
 	}
 	echo "</table>";
-
+	$time_end = microtime(true); // Tiempo Final
+	$time = $time_end - $time_start;
+			
 	echo '<a href="publicar.php?categoria_ppal='.$categria_ppal.'"><button class="button mi_color">Publicar</button></a>';
 
 	echo "<hr>";
@@ -207,6 +210,12 @@ foreach($result as $row){
 	$ban = 0;
 	$query = 'UPDATE usuarios set ultingreso = dateof(now()) where nickname ='.'\''.$login.'\'';
 	$session->execute($query);
+
+	$time_end = microtime(true); // Tiempo Final
+	$time = $time_end - $time_start;
+
+	echo '<br>';
+	echo'Tiempo:'.$time;
 	?>
 </body>
 </html>

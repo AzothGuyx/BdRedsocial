@@ -123,6 +123,7 @@ div {
 <?PHP
 /*Se recuperan los argumentos*/
 // Usuario que se logeo
+$time_start = microtime(true);
 if( isset( $_GET["login"] ) ){
 	$login = htmlspecialchars($_GET["login"]);
 } else {
@@ -290,12 +291,18 @@ try {
 				$secundarias=$secundarias.','.$catSecond[$i];
 			}
 
+			$time_end = microtime(true); // Tiempo Final
+			$time = $time_end - $time_start;
+			
 			echo "<hr>";
 			echo $nombre. " - ";
 			echo date('m/d/Y H:i:s' , $fecha_ultimo_ingreso);
 			echo " - ".$categria_ppal;
 			echo "-".$secundarias;
-			
+			echo'<br>';
+			echo'Tiempo:'.$time;
+
+		
 	?>
 
 	<!-- Boton de consultar los eventos que estoy matriculado -->

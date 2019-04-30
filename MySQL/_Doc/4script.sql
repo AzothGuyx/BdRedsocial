@@ -65,11 +65,10 @@ ENGINE = InnoDB;
 -- Table `redes_sociales`.`categoria`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `redes_sociales`.`categoria` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(100) NOT NULL,
   `principal` INT NULL,
   `usuario_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `usuario_id`),
+  PRIMARY KEY (`usuario_id`, `nombre`),
   INDEX `fk_categoria_usuario1_idx` (`usuario_id` ASC),
   CONSTRAINT `fk_categoria_usuario1`
     FOREIGN KEY (`usuario_id`)
@@ -85,19 +84,13 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `redes_sociales`.`publicacion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dspublicacion` VARCHAR(500) NOT NULL,
-  `usuario_id` INT NOT NULL,
-  `categoria_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `usuario_id`, `categoria_id`),
+  `usuario_id` INT NULL,
+  `categoria_nombre` VARCHAR(100) NOT NULL,
   INDEX `fk_publicacion_usuario1_idx` (`usuario_id` ASC),
-  INDEX `fk_publicacion_categoria1_idx` (`categoria_id` ASC),
+  PRIMARY KEY (`id`),
   CONSTRAINT `fk_publicacion_usuario1`
     FOREIGN KEY (`usuario_id`)
     REFERENCES `redes_sociales`.`usuario` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_publicacion_categoria1`
-    FOREIGN KEY (`categoria_id`)
-    REFERENCES `redes_sociales`.`categoria` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

@@ -13,6 +13,8 @@
 <body>
 <!--Cosas bases-->
 	<?PHP
+	$time_start = microtime(true);
+
 /*Se recuperan los argumentos*/
 // Usuario que se logeo
 	if( isset( $_GET["login"] ) ){
@@ -50,10 +52,10 @@
 	
 // categoria principal del usuario.
 
-	$query = 'SELECT id FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\' AND principal=1';
+	$query = 'SELECT nombre FROM categoria WHERE usuario_id ='.'\''.$idUsuario.'\' AND principal=1';
 	$result = $mysqli->query($query);
 	foreach ($result as $row) {
-		$categoriaP = $row['id'];
+		$categoriaP = $row['nombre'];
 	}
 //Actualiza la fecha de ultimo ingreso
 	$query = 'UPDATE usuario SET ultimo_ingreso='.'\''.date("Y-m-d H:i:s").'\''.' WHERE login ='.'\''.$login.'\'';
@@ -259,7 +261,7 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 					if ($filtro_fecha == 1){
 						$query = 'SELECT L.numLikes as "like", P.dspublicacion as "pub", P.id as "idP" FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id';
 					}else{
-						$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP",categoria_id FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id WHERE categoria_id IN (SELECT id FROM categoria WHERE usuario_id='.$idUsuario.')';
+						$query = 'SELECT L.numLikes AS "like", P.dspublicacion AS "pub", P.id AS "idP" FROM publicacion P INNER JOIN likes L ON P.id = L.publicacion_id WHERE categoria_nombre IN (SELECT nombre FROM categoria WHERE usuario_id='.$idUsuario.')';
 					}
 					$result = $mysqli->query($query);
 					foreach ($result as $row) {
@@ -279,7 +281,7 @@ Actualizar el numero de likes de una publicacón agregandole 1.-->
 				</tbody>
 			</table>
 <!-- HDA #4:
-qInsertar una nueva publicacion en el grupo principal del usuario-->
+Insertar una nueva publicacion en el grupo principal del usuario-->
 			<div>
 				<p>
 					<button id="btnCentral" class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -303,7 +305,7 @@ qInsertar una nueva publicacion en el grupo principal del usuario-->
 									echo "Descripcion: ".$dspub."<br>";
 									echo "usuario: ".$idUsuario."<br>";
 									echo "Categoria: ".$categoriaP."<br>";
-									$query = 'INSERT INTO publicacion(dspublicacion, usuario_id, categoria_id) VALUES ('.'\''.$dspub.'\','.'\''.$idUsuario.'\','.'\''.$categoriaP.'\')';
+									$query = 'INSERT INTO publicacion(dspublicacion, usuario_id, categoria_nombre) VALUES ('.'\''.$dspub.'\','.'\''.$idUsuario.'\','.'\''.$categoriaP.'\')';
 									$result = $mysqli->query($query);
 									echo '<form name="q3" action="home.php" method="get">
 											  <input type="hidden" name="login" value="'.$login.'" >
@@ -344,10 +346,14 @@ con los campos de Usuario, grupo principal y otros grupos.-->
     foreach ($result as $row) {
         $categoriaP = $row['nombre'];
 	}
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
 	?>
 	<footer>
         <?php
-            echo '<p>Usuario: <b>'.$login.'</b> - Categoria principal: <b>'.$categoriaP.'</b> - Categorias secundarias: <b>'.$categoriasS.'.</p>';
+			echo '<p>Usuario: <b>'.$login.'</b> - Categoria principal: <b>'.$categoriaP.'</b> - Categorias secundarias: <b>'.$categoriasS.'.</p>';
+			echo'<br>';
+			echo'Tiempo:'.$time;
         ?>
 	</footer>
 	

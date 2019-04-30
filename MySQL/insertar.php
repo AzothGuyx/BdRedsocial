@@ -9,19 +9,22 @@
 */
 
 /*Se recuperan los argumentos*/
+$tiempo				= htmlspecialchars($_GET["tiempo"]);
 $usuario_id			= htmlspecialchars($_GET["usuario_num"]);
 $categoria_nombre	= htmlspecialchars($_GET["categorias_nombre"]);
 $dspublicacion		= htmlspecialchars($_GET["dspubli"]);
-$tiempo				= htmlspecialchars($_GET["tiempo"]);
-$nickname			= htmlspecialchars($_GET["nickname"]);
-$usuarios_nombre	= htmlspecialchars($_GET["usuarios_nombre"]);
 
+					
 /*Validación de argumentos - */
+
 echo 'tiempo='. 	$tiempo .'</br>';
 echo 'usuario_id='. 		$usuario_id .'</br>';
-echo 'usuario_nombre='. 	$usuarios_nombre.'</br>';
+/* echo 'usuario_login='. 		$usuario_login .'</br>'; */
+/* echo 'usuario_nombre='. 	$usuario_nombre.'</br>'; */
+/* echo 'categoria_id='. 	$categoria_id.'</br>'; */
 echo 'categoria_nombre='. 	$categoria_nombre.'</br>';
 echo 'dspublicacion='. 	$dspublicacion.'</br>';
+
 
 /* ==--> Aqui ustede debe hacer la conexion a la base de datos*/
 // Documentacion https://www.php.net/manual/es/book.mysqli.php
@@ -31,22 +34,38 @@ if ($mysqli->connect_errno) {
     echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
 	exit(0);
 }
-//Encontrar el id mediante el nombre
-    $query = 'SELECT id FROM categoria WHERE nombre ='.'\''.$categoria_nombre.'\'';
-	$result = $mysqli->query($query);
-	foreach ($result as $row) {
-		$catId = $row['id'];
-	}
+
 /* ==--> Se arma el Insert*/
 // Documentación https://www.php.net/manual/es/mysqli-stmt.bind-param.php
 /* Sentencia preparada, etapa 1: preparación */
-   try
-   {
+$stmt = $mysqli->prepare("INSERT INTO publicacion (dspublicacion, usuario_id, categoria_nombre) VALUES (?,?,?)");
 
-    $query = 'INSERT INTO publicacion (dspublicacion, usuario_id, categoria_id) VALUES ('.'\''.$dspublicacion.'\','.'\''.$usuario_id.'\','.'\''.$catId.'\')';
-    $result = $mysqli->query($query);
-   }catch (Exception $e) {
-        echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-   }    
+/* Sentencia preparada, etapa 2: Enlace*/
+/*
+ types
 
+    Una cadena que contiene uno o más caracteres que especifican los tipos para el correspondiente enlazado de variables:
+    Especificación del tipo de caracteres Carácter 	Descripción
+    i 	la variable correspondiente es de tipo entero
+    d 	la variable correspondiente es de tipo double
+    s 	la variable correspondiente es de tipo string
+    b 	la variable correspondiente es un blob y se envía en paquetes
+	
+	En el ejemplo hay sssd significa 3 cadenas y decimal
+*/
+$stmt->bind_param('sis', $dspublicacion, $usuario_id, $categoria_nombre);
+
+
+
+/* Sentencias preprada, etapa 3: ejecuta */
+$stmt->execute();
+
+//printf("%d Fila insertada.\n", $stmt->affected_rows);
+
+
+/* se recomienda el cierre explícito */
+$stmt->close();
+$mysqli->close();
+/*retornar el texto con resultado*/
+echo "OK";
 ?>

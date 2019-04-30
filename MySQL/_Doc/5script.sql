@@ -38,18 +38,12 @@ INSERT INTO evento(`dsevento`,`feevento`) VALUES ('otro evento mas','2019-08-06 
 
 /*Insercion de publicaciones mysql*/
 
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Gra concierto de DK',5,1);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Gran evento de Ti',4,2);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('publicacion chido',6,3);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('MySQL es mejor que las otras duelale al que le duela',3,4);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('el foro de casandra fue bueno',2,5);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('me gusto mucho la comicon',1,6);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Uribe es paraco',5,7);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Comentario:',3,8);
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Este proyecto merece un 5',6,9);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('otra publicacion mas',3,10);
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('Comentario:',2,11);	
-INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_id`) VALUES ('el otro evento mas fue malo',1,12);
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('Gra concierto de DK',5,"udem");	
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('Gran evento de Ti',4,"ingenierias");	
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('publicacion chido',6,"sistemas");	
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('MySQL es mejor que las otras duelale al que le duela',3,"telecomunicaciones");	
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('el foro de casandra fue bueno',2,"derecho");	
+INSERT INTO publicacion(`dspublicacion`,`usuario_id`,`categoria_nombre`) VALUES ('me gusto mucho la comicon',1,"finanzas");	
 
 /*Insercion de likes mysql*/
 
@@ -59,12 +53,7 @@ INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (6666666,3);
 INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (0,4);
 INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (53311,5);
 INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (2,6);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (3,7);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (1234,8);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (5,9);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (53,10);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (21,11);
-INSERT INTO likes(`numLikes`,`publicacion_id`) VALUES (3,12);
+
 
 /*Insercion de agendas mysql*/
 
